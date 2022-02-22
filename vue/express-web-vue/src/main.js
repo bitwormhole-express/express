@@ -6,7 +6,7 @@ import router from './router'
 import store from './store'
 
 import MainFrame from './components/frames/mainframe/'
-import VeriCodeInput from './components/accounts/verification-code.vue'
+import VeriCodeInput from './components/accounts/VerificationCode.vue'
 
 const app = createApp(App)
 app.component("MainFrame", MainFrame)

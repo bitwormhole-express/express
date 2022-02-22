@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import sessionbox from "./session-info-box.vue";
+import sessionbox from "./SessionInfoBox.vue";
 
 export default {
   name: "NavBar",

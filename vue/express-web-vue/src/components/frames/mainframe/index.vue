@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import navbar from "./navbar.vue";
+import navbar from "./NavBar.vue";
 
 export default {
   name: "MainFrameIndex",

@@ -1,28 +1,18 @@
 <template>
   <MainFrame>
-    <!-- <div><h1>Page: Login</h1></div> -->
-
-    <el-form label-width="120px">
-      <el-form-item label="我的邮箱地址"
-        ><el-input v-model="myEmailAddress" type='email'></el-input
-      ></el-form-item>
-      <el-form-item label="验证码"><VeriCodeInput /></el-form-item>
-    </el-form>
-
-    <div>
-      <el-button type="success">登录</el-button>
-    </div>
+    <el-tabs type="border-card">
+      <el-tab-pane label="通过邮件验证登录"><LoginWithEmail /></el-tab-pane>
+      <el-tab-pane label="通过密码登录"><LoginWithPassword /></el-tab-pane>
+    </el-tabs>
   </MainFrame>
 </template>
 
 <script>
+import LoginWithEmail from "./../components/accounts/LoginWithEmail.vue";
+import LoginWithPassword from "./../components/accounts/LoginWithPassword.vue";
+
 export default {
   name: "Login",
-
-  data() {
-    return {
-      myEmailAddress: "",
-    };
-  },
+  components: { LoginWithEmail, LoginWithPassword },
 };
 </script>

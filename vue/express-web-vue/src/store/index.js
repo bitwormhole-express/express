@@ -1,4 +1,6 @@
 import { createStore } from 'vuex'
+import AxiosModule from './AxiosModule.js'
+import SessionModule from './SessionModule.js'
 
 export default createStore({
   state: {
@@ -8,5 +10,7 @@ export default createStore({
   actions: {
   },
   modules: {
+    "axios": AxiosModule,
+    "session": SessionModule,
   }
 })
