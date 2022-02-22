@@ -12,7 +12,7 @@ function useToken(req) {
 }
 
 function setToken(resp) {
-    const key = "x-keeper-set-token"
+    const key = "x-set-keeper-token"
     let headers = resp.headers;
     let token = headers[key]
     if (token != null) {

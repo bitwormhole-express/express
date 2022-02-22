@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/bitwormhole/starter-security/keeper"
+	"github.com/bitwormhole/starter-security/keeper/users"
 	"github.com/bitwormhole/starter/markup"
 )
 
@@ -32,13 +33,14 @@ func (inst *LoginWithPasswordHandler) Supports(ctx context.Context, a keeper.Aut
 
 func (inst *LoginWithPasswordHandler) Verify(ctx context.Context, a keeper.Authentication) (keeper.Identity, error) {
 
+	user := a.User()
 	ib := keeper.IdentityBuilder{}
 
-	ib.Avatar = ""
-	ib.Nickname = ""
-	ib.Roles = ""
+	ib.Avatar = "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+	ib.Nickname = user
+	ib.Roles = "guest,user"
 	ib.UserID = 0
-	ib.UserName = ""
+	ib.UserName = users.UserName(user)
 	ib.UserUUID = ""
 
 	id := ib.Identity()

@@ -11,7 +11,8 @@
             "mode": "auto",
             "program": "${workspaceFolder}/src/main/golang",
             "args": [
-                "--application.profiles.active=dev"
+                "--application.profiles.active=dev",
+                "--datasource.default.driver=sqlserver"
             ]
         }
     ]

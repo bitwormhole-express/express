@@ -8,11 +8,15 @@
       <el-dropdown>
         <span>
           <el-avatar size="default" :src="avatar"></el-avatar>
-          {{ session.nickname }}
         </span>
         <template #dropdown>
-          <div>
-            <el-button type="text" @click="handleClickLogout">退出</el-button>
+          <div class="account-info-panel">
+            <div>{{ session.nickname }}</div>
+            <div>{{ session.email }}</div>
+            <div></div>
+            <div>
+              <el-button type="text" @click="handleClickLogout">退出</el-button>
+            </div>
           </div>
         </template>
       </el-dropdown>
@@ -71,5 +75,9 @@ export default {
 <style scoped>
 .session-info-box {
   display: flex;
+}
+
+.account-info-panel {
+  padding: 20px;
 }
 </style>

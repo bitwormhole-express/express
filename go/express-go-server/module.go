@@ -9,6 +9,7 @@ import (
 	starterginsecurity "github.com/bitwormhole/starter-gin-security"
 	gormstarter "github.com/bitwormhole/starter-gorm"
 	mysql "github.com/bitwormhole/starter-gorm-mysql"
+	sqlserver "github.com/bitwormhole/starter-gorm-sqlserver"
 	"github.com/bitwormhole/starter/application"
 	"github.com/bitwormhole/starter/collection"
 )
@@ -34,6 +35,7 @@ func Module() application.Module {
 	mb.Dependency(ginstarter.Module())
 	mb.Dependency(gormstarter.Module())
 	mb.Dependency(mysql.DriverModule())
+	mb.Dependency(sqlserver.DriverModule())
 	mb.Dependency(starterginsecurity.Module())
 
 	mb.Dependency(ginstarter.ModuleWithDevtools())
