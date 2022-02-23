@@ -9,29 +9,29 @@ import (
 	"github.com/bitwormhole/starter/markup"
 )
 
-type LoginWithPasswordHandler struct {
-	markup.Component `id:"keeper-authenticator-registry-2233" class:"keeper-authenticator-registry"`
+type EmailAuthenticator struct {
+	markup.Component `class:"keeper-authenticator-registry"`
 }
 
-func (inst *LoginWithPasswordHandler) _Impl() (keeper.AuthenticatorRegistry, keeper.Authenticator) {
+func (inst *EmailAuthenticator) _Impl() (keeper.AuthenticatorRegistry, keeper.Authenticator) {
 	return inst, inst
 }
 
-func (inst *LoginWithPasswordHandler) GetRegistrationList() []*keeper.AuthenticatorRegistration {
+func (inst *EmailAuthenticator) GetRegistrationList() []*keeper.AuthenticatorRegistration {
 	ar := &keeper.AuthenticatorRegistration{
-		Name:          "password",
-		Mechanism:     "password",
+		Name:          "email",
+		Mechanism:     "email",
 		Authenticator: inst,
 	}
 	return []*keeper.AuthenticatorRegistration{ar}
 }
 
-func (inst *LoginWithPasswordHandler) Supports(ctx context.Context, a keeper.Authentication) bool {
+func (inst *EmailAuthenticator) Supports(ctx context.Context, a keeper.Authentication) bool {
 	mech := a.Mechanism()
-	return strings.ToLower(mech) == "password"
+	return strings.ToLower(mech) == "email"
 }
 
-func (inst *LoginWithPasswordHandler) Verify(ctx context.Context, a keeper.Authentication) (keeper.Identity, error) {
+func (inst *EmailAuthenticator) Verify(ctx context.Context, a keeper.Authentication) (keeper.Identity, error) {
 
 	user := a.User()
 	ib := keeper.IdentityBuilder{}

@@ -20,6 +20,21 @@ function setToken(resp) {
     }
 }
 
+function getResponseError(resp) {
+    let status = resp.status;
+    if (status != 200) {
+        return new Error("HTTP " + status)
+    }
+    let data = resp.data;
+    if (data == null) {
+        return new Error("no response data")
+    }
+    let status2 = data.status;
+    if (status2 != 200) {
+        return new Error("status:" + status)
+    }
+    return null;
+}
 
 axios.interceptors.request.use((config) => {
     useToken(config)
@@ -46,8 +61,15 @@ export default {
     },
 
     actions: {
-        execute(context, p) {
-            return axios(p)
+        execute(context, params) {
+            let result = axios(params).then((resp) => {
+                let err = getResponseError(resp)
+                if (err != null) {
+                    throw err
+                }
+                return resp
+            })
+            return result
         }
     },
 }

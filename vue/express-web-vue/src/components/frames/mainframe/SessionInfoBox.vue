@@ -11,9 +11,8 @@
         </span>
         <template #dropdown>
           <div class="account-info-panel">
-            <div>{{ session.nickname }}</div>
+            <div><h3>{{ session.nickname }}</h3></div>
             <div>{{ session.email }}</div>
-            <div></div>
             <div>
               <el-button type="text" @click="handleClickLogout">退出</el-button>
             </div>
@@ -26,6 +25,9 @@
 </template>
 
 <script>
+const defaultAvatarURL =
+  "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png";
+
 export default {
   name: "SessionInfoBox",
 
@@ -37,8 +39,7 @@ export default {
     avatar() {
       let url = this.session.avatar;
       if (url == null || url == "") {
-        url =
-          "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png";
+        url = defaultAvatarURL;
       }
       return url;
     },
@@ -78,6 +79,6 @@ export default {
 }
 
 .account-info-panel {
-  padding: 20px;
+  padding: 10px;
 }
 </style>

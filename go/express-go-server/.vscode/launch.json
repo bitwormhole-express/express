@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/src/main/golang",
             "args": [
                 "--application.profiles.active=dev",
-                "--datasource.default.driver=sqlserver"
+                "--datasource.default.driver=mysql"
             ]
         }
     ]

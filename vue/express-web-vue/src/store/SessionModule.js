@@ -1,11 +1,15 @@
 
 // 判断登录是否成功
 function isLoginOK(data) {
-    // TODO ... 
     if (data == null) {
         return false;
     }
-    return false
+    let status = data.status
+    let auth = data.auth
+    if (auth == null || status == null) {
+        return false
+    }
+    return (auth.success && (status == 200))
 }
 
 export default {
@@ -36,28 +40,33 @@ export default {
                 method: "GET",
                 url: "/api/v1/session/"
             }
-            context.dispatch('axios/execute', p, { root: true }).then((res) => {
+            return context.dispatch('axios/execute', p, { root: true }).then((res) => {
                 context.commit('updateSessionInfo', res.data.session)
+                return res;
             })
         },
 
         login(context, p) {
             p.method = 'POST'
             p.url = '/api/v1/auth/'
-            context.dispatch('axios/execute', p, { root: true }).then((res) => {
+            return context.dispatch('axios/execute', p, { root: true }).then((res) => {
                 if (isLoginOK(res.data)) {
                     context.dispatch('fetch')
+                } else {
+                    throw new Error("登录失败!")
                 }
+                return res
             })
         },
 
         logout(context) {
             let p = {
-                method: "DELETE",
-                url: "/api/v1/session/",
+                method: "POST",
+                url: "/api/v1/logout",
             }
-            context.dispatch('axios/execute', p, { root: true }).then(() => {
+            return context.dispatch('axios/execute', p, { root: true }).then((res) => {
                 context.dispatch('fetch')
+                return res;
             })
         }
     },

@@ -14,26 +14,50 @@
     </el-form>
 
     <div>
-      <el-button type="success" @click="handleClickLogin">登录</el-button>
+      <el-button type="success" @click="handleClickLogin" :disabled="working">
+        <el-icon class="is-loading" v-show="working">
+          <Loading />
+        </el-icon>
+        登录</el-button
+      >
     </div>
   </div>
 </template>
 
 <script>
+import base64js from "base64-js";
+
+import { Loading } from "@element-plus/icons-vue";
+import { ElMessageBox, ElMessage } from "element-plus";
+
+function encodePassword(password) {
+  let src = password;
+  let dst = [];
+  let len = src.length;
+  for (let i = 0; i < len; i++) {
+    let code = src.charCodeAt(i);
+    dst.push(code);
+  }
+  return base64js.fromByteArray(dst);
+}
+
 export default {
   name: "LoginWithPassword",
+
+  components: { Loading },
 
   data() {
     return {
       myUserID: "123",
       myPassword: "123",
+      working: false,
     };
   },
 
   methods: {
     handleClickLogin() {
       let account = this.myUserID;
-      let secret = this.myPassword;
+      let secret = encodePassword(this.myPassword);
       let data = {
         auth: {
           account,
@@ -44,7 +68,31 @@ export default {
       let p = {
         data,
       };
-      this.$store.dispatch("session/login", p);
+      this.working = true;
+      this.$store
+        .dispatch("session/login", p)
+        .then(() => {
+          this.working = false;
+          this.showLoginOkMessage();
+        })
+        .catch(() => {
+          this.working = false;
+          this.showLoginErrorMessage();
+        });
+    },
+
+    showLoginErrorMessage() {
+      ElMessageBox.alert("可能是用户名或者密码错误", "登录失败", {
+        confirmButtonText: "确定",
+        type: "error",
+      });
+    },
+
+    showLoginOkMessage() {
+      ElMessage({
+        message: "登录成功",
+        type: "success",
+      });
     },
   },
 };

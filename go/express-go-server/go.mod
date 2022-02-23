@@ -12,4 +12,5 @@ require (
 	github.com/bitwormhole/starter-restful v0.1.4 // direct
 	github.com/bitwormhole/starter-security v0.1.5 // direct
 	github.com/gin-gonic/gin v1.7.7 // direct
+	gorm.io/gorm v1.22.4 // indirect
 )
