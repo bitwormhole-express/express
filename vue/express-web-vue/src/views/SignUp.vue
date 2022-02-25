@@ -1,5 +1,7 @@
 <template>
+  <!-- 注册账号 -->
   <MainFrame>
+    <h1>创建新账号</h1>
     <div v-show="step.current == step.verify">
       <el-form label-width="120px">
         <el-form-item label="我的邮箱地址"
@@ -10,7 +12,7 @@
         /></el-form-item>
       </el-form>
       <div>
-        <el-button type="success">注册</el-button>
+        <el-button type="primary">验证</el-button>
       </div>
     </div>
 
@@ -24,9 +26,14 @@
         /></el-form-item>
       </el-form>
       <div>
-        <el-button type="success">确定</el-button>
-        <el-button type="default">跳过</el-button>
+        <el-button type="primary" @click="handleClickCommit" >提交</el-button>
+        <!-- <el-button type="default">跳过</el-button> -->
       </div>
+    </div>
+
+    <div v-show="step.current == step.finish">
+      <h2>注册成功！</h2>
+      <el-button type="success"> 去登录 </el-button>
     </div>
   </MainFrame>
 </template>
@@ -40,7 +47,8 @@ export default {
       step: {
         current: 1,
         verify: 1,
-        setpass: 2,
+        setpass: 1,
+        finish: 1,
       },
       myEmailAddress: "",
       password1: "",

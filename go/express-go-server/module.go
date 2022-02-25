@@ -10,6 +10,7 @@ import (
 	gormstarter "github.com/bitwormhole/starter-gorm"
 	mysql "github.com/bitwormhole/starter-gorm-mysql"
 	sqlserver "github.com/bitwormhole/starter-gorm-sqlserver"
+	startermail "github.com/bitwormhole/starter-mail"
 	"github.com/bitwormhole/starter/application"
 	"github.com/bitwormhole/starter/collection"
 )
@@ -23,6 +24,7 @@ const (
 //go:embed "src/main/resources"
 var theModuleSrcMainRes embed.FS
 
+// Module 导出 app 主模块
 func Module() application.Module {
 	mb := application.ModuleBuilder{}
 	mb.Name(theModuleName)
@@ -37,6 +39,7 @@ func Module() application.Module {
 	mb.Dependency(mysql.DriverModule())
 	mb.Dependency(sqlserver.DriverModule())
 	mb.Dependency(starterginsecurity.Module())
+	mb.Dependency(startermail.Module())
 
 	mb.Dependency(ginstarter.ModuleWithDevtools())
 

@@ -6,9 +6,14 @@ import (
 	"gorm.io/gorm"
 )
 
+// Base 基本的数据库实体结构
 type Base struct {
-	UUID      string
+
+	// ID        uint           `gorm:"primaryKey"`
+
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	DeleteAt  gorm.DeletedAt `gorm:"index"`
+
+	DeleteAt gorm.DeletedAt `gorm:"index"`
+	UUID     string         `gorm:"index:idx_name,unique"`
 }

@@ -25,20 +25,13 @@
 </template>
 
 <script>
-import base64js from "base64-js";
+import PasswordUtil from "@/utils/password.js";
 
 import { Loading } from "@element-plus/icons-vue";
 import { ElMessageBox, ElMessage } from "element-plus";
 
 function encodePassword(password) {
-  let src = password;
-  let dst = [];
-  let len = src.length;
-  for (let i = 0; i < len; i++) {
-    let code = src.charCodeAt(i);
-    dst.push(code);
-  }
-  return base64js.fromByteArray(dst);
+  return PasswordUtil.encodePassword(password);
 }
 
 export default {

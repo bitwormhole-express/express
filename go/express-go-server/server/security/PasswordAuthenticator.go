@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"bitwomrhole.com/djaf/express-go-server/server/data/dao"
+	"bitwomrhole.com/djaf/express-go-server/server/service"
 	"github.com/bitwormhole/starter-security/keeper"
 	"github.com/bitwormhole/starter-security/keeper/users"
 	"github.com/bitwormhole/starter/markup"
@@ -14,7 +15,8 @@ import (
 type PasswordAuthenticator struct {
 	markup.Component `class:"keeper-authenticator-registry"`
 
-	AccountDAO dao.Account `inject:"#express-data-account-dao"`
+	AccountDAO      dao.Account             `inject:"#express-data-account-dao"`
+	PasswordService service.PasswordService `inject:"#express-PasswordService"`
 }
 
 func (inst *PasswordAuthenticator) _Impl() (keeper.AuthenticatorRegistry, keeper.Authenticator) {
@@ -35,29 +37,30 @@ func (inst *PasswordAuthenticator) Supports(ctx context.Context, a keeper.Authen
 	return strings.ToLower(mech) == "password"
 }
 
+// Verify 验证密码是否正确
 func (inst *PasswordAuthenticator) Verify(ctx context.Context, a keeper.Authentication) (keeper.Identity, error) {
 
+	// find account
 	word := a.User()
 	account, err := inst.AccountDAO.Find(word)
 	if err != nil {
 		return nil, err
 	}
 
-	pass1 := string(a.Secret())
-	pass2 := account.Password
-	if pass1 != pass2 {
+	// verify
+	err = inst.PasswordService.Verify(account.ID.String(), a.Secret())
+	if err != nil {
 		return nil, errors.New("bad username or password")
 	}
 
+	// make identity
 	ib := keeper.IdentityBuilder{}
-
 	ib.Avatar = account.Avatar
 	ib.Nickname = account.Nickname
 	ib.Roles = users.Roles(account.Roles)
 	ib.UserID = users.UserID(account.ID)
 	ib.UserName = users.UserName(account.Username)
 	ib.UserUUID = users.UserUUID(account.UUID)
-
-	id := ib.Identity()
-	return id, nil
+	identity := ib.Identity()
+	return identity, nil
 }

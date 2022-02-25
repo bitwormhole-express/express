@@ -25,6 +25,8 @@ github.com/bitwormhole/starter-gorm-mysql v0.0.4 h1:rHYSQ+LAeJWo0hQqZH9hM9PS7PLc
 github.com/bitwormhole/starter-gorm-mysql v0.0.4/go.mod h1:ak7BYTA4SvLOsVw7pi7xoEnS1uvFtD3WCjqfn3m64Uw=
 github.com/bitwormhole/starter-gorm-sqlserver v0.0.4 h1:rXWgbz4uGbiA757bbRC0GC7vi2VlPY3XLi4wrqzD3EI=
 github.com/bitwormhole/starter-gorm-sqlserver v0.0.4/go.mod h1:e5L+UnkDR7os9JbFn+Yh/G5xei/Dixgcq/ZuvmemFW0=
+github.com/bitwormhole/starter-mail v0.1.0 h1:ZfmfItYHlYgha0m7yIPz2wpo7EckznCbnNk7SKSOX5Y=
+github.com/bitwormhole/starter-mail v0.1.0/go.mod h1:NgmePo+rk0pFLyxLDrctbmNl6BvLtjCfhQJsBqhnFK4=
 github.com/bitwormhole/starter-restful v0.1.2/go.mod h1:LYs12GhcdTvInF4kIhd73CpCN411MnjgJkyjE9Geoe0=
 github.com/bitwormhole/starter-restful v0.1.4 h1:4k3vCzusP83MbNmjSKe+c9BS1C5iu3RA7aD2+hHyizE=
 github.com/bitwormhole/starter-restful v0.1.4/go.mod h1:LYs12GhcdTvInF4kIhd73CpCN411MnjgJkyjE9Geoe0=

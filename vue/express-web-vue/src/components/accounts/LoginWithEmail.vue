@@ -4,7 +4,9 @@
       <el-form-item label="我的邮箱地址"
         ><el-input v-model="myEmailAddress" type="email"></el-input
       ></el-form-item>
-      <el-form-item label="验证码"><VeriCodeInput /></el-form-item>
+      <el-form-item label="验证码"
+        ><VeriCodeInput :email="myEmailAddress"
+      /></el-form-item>
     </el-form>
 
     <div>
