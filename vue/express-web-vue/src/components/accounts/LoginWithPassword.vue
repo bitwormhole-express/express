@@ -1,20 +1,32 @@
 <template>
   <div>
-    <el-form label-width="120px">
-      <el-form-item label="用户名"
+    <el-form>
+      <el-form-item
         ><el-input
           v-model="myUserID"
           type="email"
-          placeholder="请在此输入用户名、邮箱地址、或电话号码等身份标识"
+          placeholder="用户名或邮箱"
         ></el-input
       ></el-form-item>
-      <el-form-item label="密码"
-        ><el-input v-model="myPassword" type="password"
+      <el-form-item
+        ><el-input
+          v-model="myPassword"
+          type="password"
+          placeholder="用户的密码"
       /></el-form-item>
     </el-form>
 
     <div>
-      <el-button type="success" @click="handleClickLogin" :disabled="working">
+      <div><router-link to="/forget-password"> 忘记密码？ </router-link></div>
+    </div>
+
+    <div>
+      <el-button
+        class="btn-login"
+        type="success"
+        @click="handleClickLogin"
+        :disabled="working"
+      >
         <el-icon class="is-loading" v-show="working">
           <Loading />
         </el-icon>
@@ -41,8 +53,8 @@ export default {
 
   data() {
     return {
-      myUserID: "123",
-      myPassword: "123",
+      myUserID: "",
+      myPassword: "",
       working: false,
     };
   },
@@ -67,11 +79,16 @@ export default {
         .then(() => {
           this.working = false;
           this.showLoginOkMessage();
+          this.navToHome();
         })
         .catch(() => {
           this.working = false;
           this.showLoginErrorMessage();
         });
+    },
+
+    navToHome() {
+      this.$router.push("/");
     },
 
     showLoginErrorMessage() {
@@ -90,3 +107,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.btn-login {
+  width: 100%;
+  margin-top: 50px;
+}
+</style>

@@ -11,9 +11,13 @@
         </span>
         <template #dropdown>
           <div class="account-info-panel">
-            <div><h3>{{ session.nickname }}</h3></div>
-            <div>{{ session.email }}</div>
             <div>
+              <h3>{{ session.nickname }}</h3>
+            </div>
+            <div>
+              <el-icon> <Message /></el-icon> {{ session.email }}
+            </div>
+            <div class="box-exit">
               <el-button type="text" @click="handleClickLogout">退出</el-button>
             </div>
           </div>
@@ -25,11 +29,15 @@
 </template>
 
 <script>
+import { Message } from "@element-plus/icons-vue";
+
 const defaultAvatarURL =
   "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png";
 
 export default {
   name: "SessionInfoBox",
+
+  components: { Message },
 
   data() {
     return {};
@@ -76,9 +84,17 @@ export default {
 <style scoped>
 .session-info-box {
   display: flex;
+  flex-direction: column;
 }
 
 .account-info-panel {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
+  min-width: 200px;
+}
+
+.box-exit {
+  text-align: right;
 }
 </style>

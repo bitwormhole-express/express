@@ -19,6 +19,8 @@ github.com/bitwormhole/starter-gin-security v0.1.6 h1:13rM819wpyX4MmY7acN1keMmsZ
 github.com/bitwormhole/starter-gin-security v0.1.6/go.mod h1:wTAea4WCgrEdAMCc6Ugig6BPKYnTOd1HbRFK7ihVf8U=
 github.com/bitwormhole/starter-gin-security v0.1.7 h1:Gof4w8UZXWAtbJFAF1D3gZZ5GIdrbQuEctCmaW2TDd4=
 github.com/bitwormhole/starter-gin-security v0.1.7/go.mod h1:wTAea4WCgrEdAMCc6Ugig6BPKYnTOd1HbRFK7ihVf8U=
+github.com/bitwormhole/starter-gin-security v0.1.8 h1:y2DEeuOcUEGqLmJlwZq0Jrkz2Cw49l+TcqJBniqvIuE=
+github.com/bitwormhole/starter-gin-security v0.1.8/go.mod h1:bj1hYs2WS7L+zTBmuotPASHbb6zq6eZFq072Wzi2PZU=
 github.com/bitwormhole/starter-gorm v0.0.7 h1:9S1lywtZ2RnOowIlTW4XH/wy9ixNj1o8gJNPLotLNJM=
 github.com/bitwormhole/starter-gorm v0.0.7/go.mod h1:BVAKttIV5UnsQI5+fLI+96XFJP96xffx+3Gdh6N7t8w=
 github.com/bitwormhole/starter-gorm-mysql v0.0.4 h1:rHYSQ+LAeJWo0hQqZH9hM9PS7PLciatxgXScJh5/5AE=
@@ -30,10 +32,14 @@ github.com/bitwormhole/starter-mail v0.1.0/go.mod h1:NgmePo+rk0pFLyxLDrctbmNl6Bv
 github.com/bitwormhole/starter-restful v0.1.2/go.mod h1:LYs12GhcdTvInF4kIhd73CpCN411MnjgJkyjE9Geoe0=
 github.com/bitwormhole/starter-restful v0.1.4 h1:4k3vCzusP83MbNmjSKe+c9BS1C5iu3RA7aD2+hHyizE=
 github.com/bitwormhole/starter-restful v0.1.4/go.mod h1:LYs12GhcdTvInF4kIhd73CpCN411MnjgJkyjE9Geoe0=
+github.com/bitwormhole/starter-restful v0.1.5 h1:ReLUt03xnR/5Z91UiBoTzDwTsKJzoXmFUrl80YyKWZM=
+github.com/bitwormhole/starter-restful v0.1.5/go.mod h1:LYs12GhcdTvInF4kIhd73CpCN411MnjgJkyjE9Geoe0=
 github.com/bitwormhole/starter-security v0.1.4 h1:ac+AdHADfh05gHQ/S4+2J3fIPP8Il7DMuE5UWZ9Tlqo=
 github.com/bitwormhole/starter-security v0.1.4/go.mod h1:7WRivhvxrevJZgUTrkxa9amKXxXROHm9AogWwK/GoAc=
 github.com/bitwormhole/starter-security v0.1.5 h1:olrU7wEbS3IhESW7CexDk5sRdK6iRPpD9JB43WExlRE=
 github.com/bitwormhole/starter-security v0.1.5/go.mod h1:7WRivhvxrevJZgUTrkxa9amKXxXROHm9AogWwK/GoAc=
+github.com/bitwormhole/starter-security v0.1.6 h1:ydqTKgKeoWSad9EBu3erO2vNNtKuysEbeJxGZ/nBJXc=
+github.com/bitwormhole/starter-security v0.1.6/go.mod h1:7WRivhvxrevJZgUTrkxa9amKXxXROHm9AogWwK/GoAc=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/denisenkom/go-mssqldb v0.11.0 h1:9rHa233rhdOyrz2GcP9NM+gi2psgJZ4GWDpL/7ND8HI=
@@ -94,6 +100,8 @@ golang.org/x/sys v0.0.0-20201119102817-f84b799fce68/go.mod h1:h1NjWce9XRLGQEsW7w
 golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/sys v0.0.0-20220209214540-3681064d5158 h1:rm+CHSpPEEW2IsXUib1ThaHIjuBVZjxNgSKmBLFfD4c=
 golang.org/x/sys v0.0.0-20220209214540-3681064d5158/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+golang.org/x/sys v0.0.0-20220224120231-95c6836cb0e7 h1:BXxu8t6QN0G1uff4bzZzSkpsax8+ALqTGUtz08QrV00=
+golang.org/x/sys v0.0.0-20220224120231-95c6836cb0e7/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/term v0.0.0-20201126162022-7de9c90e9dd1/go.mod h1:bj7SfCRtBDWHUb9snDiAeCFNEtKQo2Wmx5Cou7ajbmo=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.2/go.mod h1:bEr9sfX3Q8Zfm5fL9x+3itogRgK3+ptLWKqgva+5dAk=

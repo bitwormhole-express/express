@@ -56,6 +56,7 @@ func (inst *PasswordAuthenticator) Verify(ctx context.Context, a keeper.Authenti
 	// make identity
 	ib := keeper.IdentityBuilder{}
 	ib.Avatar = account.Avatar
+	ib.Email = account.Email
 	ib.Nickname = account.Nickname
 	ib.Roles = users.Roles(account.Roles)
 	ib.UserID = users.UserID(account.ID)

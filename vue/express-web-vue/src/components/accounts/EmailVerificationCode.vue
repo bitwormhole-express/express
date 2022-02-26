@@ -2,7 +2,11 @@
   <!-- 验证码组件 -->
 
   <div class="vcode">
-    <el-input v-model="vcodeText"></el-input>
+    <el-input
+      class="input-vcode"
+      v-model="vcodeText"
+      placeholder="邮件中的验证码"
+    ></el-input>
     <el-button
       class="btn-fetch-code"
       @click="handleClickFetchVeriCode"
@@ -156,10 +160,17 @@ export default {
 <style scoped>
 .vcode {
   display: flex;
+  width: 100%;
+  flex-direction: row;
 }
 
 .btn-fetch-code {
   margin-left: 10px;
   min-width: 110px;
+}
+
+.input-vcode {
+  flex-grow: 1;
+  flex-basis: 0px;
 }
 </style>

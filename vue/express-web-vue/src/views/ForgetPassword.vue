@@ -1,44 +1,60 @@
 <template>
   <!-- 忘记密码，重设 -->
   <MainFrame>
-    <h1>重设密码</h1>
+    <h1 class="title">重设密码</h1>
 
-    <div v-show="step.current == step.verify">
-      <el-form label-width="120px">
-        <el-form-item label="我的邮箱地址"
-          ><el-input v-model="myEmailAddress" type="email"></el-input
-        ></el-form-item>
-        <el-form-item label="验证码"
-          ><VeriCodeInput
-            v-model="vericode"
-            :email="myEmailAddress"
-            ref="inputVeriCode"
-        /></el-form-item>
-      </el-form>
-      <div>
-        <el-button type="primary" @click="handleClickVerify">验证</el-button>
+    <div class="client-box">
+      <div v-show="step.current == step.verify">
+        <el-form>
+          <el-form-item
+            ><el-input
+              v-model="myEmailAddress"
+              type="email"
+              placeholder="我的邮箱地址"
+            ></el-input
+          ></el-form-item>
+          <el-form-item
+            ><VeriCodeInput
+              v-model="vericode"
+              :email="myEmailAddress"
+              ref="inputVeriCode"
+          /></el-form-item>
+        </el-form>
+        <div>
+          <el-button class="btn-all" type="primary" @click="handleClickVerify"
+            >验证</el-button
+          >
+        </div>
       </div>
-    </div>
 
-    <div v-show="step.current == step.setpass">
-      <el-form label-width="120px">
-        <el-form-item label="设置密码"
-          ><el-input v-model="password1" type="password"
-        /></el-form-item>
-        <el-form-item label="确认密码"
-          ><el-input v-model="password2" type="password"
-        /></el-form-item>
-      </el-form>
-      <div>
-        <el-button type="primary" @click="handleClickCommit">提交</el-button>
+      <div v-show="step.current == step.setpass">
+        <el-form>
+          <el-form-item
+            ><el-input
+              v-model="password1"
+              type="password"
+              placeholder="设置密码"
+          /></el-form-item>
+          <el-form-item
+            ><el-input
+              v-model="password2"
+              type="password"
+              placeholder="确认密码"
+          /></el-form-item>
+        </el-form>
+        <div>
+          <el-button class="btn-all" type="primary" @click="handleClickCommit"
+            >提交</el-button
+          >
+        </div>
       </div>
-    </div>
 
-    <div v-show="step.current == step.finish">
-      <h2>设置成功！</h2>
-      <el-button type="success" @click="handleClickNavToLogin"
-        >去登录</el-button
-      >
+      <div v-show="step.current == step.finish">
+        <h2>设置成功！</h2>
+        <el-button class="btn-all" type="success" @click="handleClickNavToLogin"
+          >去登录</el-button
+        >
+      </div>
     </div>
   </MainFrame>
 </template>
@@ -54,8 +70,8 @@ export default {
       step: {
         current: 1,
         verify: 1,
-        setpass: 1,
-        finish: 1,
+        setpass: 2,
+        finish: 3,
       },
       myEmailAddress: "",
       password1: "",
@@ -103,7 +119,13 @@ export default {
     },
 
     handleClickVerify() {
-      // todo ...
+      this.$refs.inputVeriCode.verify().then(() => {
+        this.nextStep();
+      });
+    },
+
+    nextStep() {
+      this.step.current++;
     },
 
     resetPassword(data) {
@@ -115,7 +137,8 @@ export default {
       this.$store
         .dispatch("axios/execute", p)
         .then(() => {
-          this.showAlert("成功");
+          // this.showAlert("成功");
+          this.nextStep();
         })
         .catch(() => {
           this.showAlert("失败");
@@ -128,3 +151,25 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.client-box {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  box-shadow: 0px 0px 10px gray;
+  max-width: 400px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.btn-all {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.title {
+  font-size: 30px;
+  color: gray;
+}
+</style>

@@ -2,13 +2,12 @@
   <MainFrame>
     <div class="login-box">
       <el-tabs type="border-card">
-        <el-tab-pane label="通过邮件验证登录"><LoginWithEmail /></el-tab-pane>
         <el-tab-pane label="通过密码登录"><LoginWithPassword /></el-tab-pane>
+        <el-tab-pane label="通过邮件验证登录"><LoginWithEmail /></el-tab-pane>
       </el-tabs>
     </div>
 
     <div class="other">
-      <div><router-link to="/forget-password"> 忘记密码？ </router-link></div>
       <div><router-link to="/sign-up"> 注册新账号 </router-link></div>
     </div>
   </MainFrame>

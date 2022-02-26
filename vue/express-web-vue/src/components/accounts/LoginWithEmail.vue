@@ -1,16 +1,22 @@
 <template>
   <div>
-    <el-form label-width="120px">
-      <el-form-item label="我的邮箱地址"
-        ><el-input v-model="myEmailAddress" type="email"></el-input
+    <el-form>
+      <el-form-item
+        ><el-input
+          v-model="myEmailAddress"
+          type="email"
+          placeholder="我的邮箱地址"
+        ></el-input
       ></el-form-item>
-      <el-form-item label="验证码"
+      <el-form-item
         ><VeriCodeInput ref="inputVeriCode" :email="myEmailAddress"
       /></el-form-item>
     </el-form>
 
     <div>
-      <el-button type="success" @click="handleClickLogin">登录</el-button>
+      <el-button class="btn-login" type="success" @click="handleClickLogin"
+        >登录</el-button
+      >
     </div>
   </div>
 </template>
@@ -66,3 +72,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.btn-login {
+  width: 100%;
+  margin-top: 50px;
+}
+</style>
