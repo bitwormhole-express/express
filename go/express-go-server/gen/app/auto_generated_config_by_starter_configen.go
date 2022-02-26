@@ -35,37 +35,10 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 	cominfobuilder := config.ComInfo()
 	nop(err,cominfobuilder)
 
-	// component: express-data-account-dao
+	// component: express-PasswordService
 	cominfobuilder.Next()
-	cominfobuilder.ID("express-data-account-dao").Class("express-server-data-auto-migrator").Aliases("").Scope("")
-	cominfobuilder.Factory((&comFactory4pComAccountDaoImpl{}).init())
-	err = cominfobuilder.CreateTo(cb)
-	if err != nil {
-		return err
-	}
-
-	// component: com1-dao0xf4c226.AutoMigratorManager
-	cominfobuilder.Next()
-	cominfobuilder.ID("com1-dao0xf4c226.AutoMigratorManager").Class("").Aliases("").Scope("")
-	cominfobuilder.Factory((&comFactory4pComAutoMigratorManager{}).init())
-	err = cominfobuilder.CreateTo(cb)
-	if err != nil {
-		return err
-	}
-
-	// component: com2-security0x9ba940.EmailAuthenticator
-	cominfobuilder.Next()
-	cominfobuilder.ID("com2-security0x9ba940.EmailAuthenticator").Class("keeper-authenticator-registry").Aliases("").Scope("")
-	cominfobuilder.Factory((&comFactory4pComEmailAuthenticator{}).init())
-	err = cominfobuilder.CreateTo(cb)
-	if err != nil {
-		return err
-	}
-
-	// component: com3-security0x9ba940.PasswordAuthenticator
-	cominfobuilder.Next()
-	cominfobuilder.ID("com3-security0x9ba940.PasswordAuthenticator").Class("keeper-authenticator-registry").Aliases("").Scope("")
-	cominfobuilder.Factory((&comFactory4pComPasswordAuthenticator{}).init())
+	cominfobuilder.ID("express-PasswordService").Class("").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComPasswordServiceImpl{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
@@ -80,19 +53,46 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: express-PasswordService
+	// component: express-data-account-dao
 	cominfobuilder.Next()
-	cominfobuilder.ID("express-PasswordService").Class("").Aliases("").Scope("")
-	cominfobuilder.Factory((&comFactory4pComPasswordServiceImpl{}).init())
+	cominfobuilder.ID("express-data-account-dao").Class("express-server-data-auto-migrator").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComAccountDaoImpl{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
 	}
 
-	// component: com6-controller0x21caa6.EmailVerificationController
+	// component: com3-dao0xf4c226.AutoMigratorManager
 	cominfobuilder.Next()
-	cominfobuilder.ID("com6-controller0x21caa6.EmailVerificationController").Class("rest-controller").Aliases("").Scope("")
-	cominfobuilder.Factory((&comFactory4pComEmailVerificationController{}).init())
+	cominfobuilder.ID("com3-dao0xf4c226.AutoMigratorManager").Class("").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComAutoMigratorManager{}).init())
+	err = cominfobuilder.CreateTo(cb)
+	if err != nil {
+		return err
+	}
+
+	// component: com4-security0x9ba940.EmailAuthenticator
+	cominfobuilder.Next()
+	cominfobuilder.ID("com4-security0x9ba940.EmailAuthenticator").Class("keeper-authenticator-registry").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComEmailAuthenticator{}).init())
+	err = cominfobuilder.CreateTo(cb)
+	if err != nil {
+		return err
+	}
+
+	// component: com5-security0x9ba940.PasswordAuthenticator
+	cominfobuilder.Next()
+	cominfobuilder.ID("com5-security0x9ba940.PasswordAuthenticator").Class("keeper-authenticator-registry").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComPasswordAuthenticator{}).init())
+	err = cominfobuilder.CreateTo(cb)
+	if err != nil {
+		return err
+	}
+
+	// component: com6-interceptor0xbd9b3b.DebugInterceptor
+	cominfobuilder.Next()
+	cominfobuilder.ID("com6-interceptor0xbd9b3b.DebugInterceptor").Class("rest-interceptor-registry").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComDebugInterceptor{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
@@ -107,10 +107,10 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: com8-controller0x21caa6.LogoutController
+	// component: com8-controller0x21caa6.AuthController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com8-controller0x21caa6.LogoutController").Class("rest-controller").Aliases("").Scope("")
-	cominfobuilder.Factory((&comFactory4pComLogoutController{}).init())
+	cominfobuilder.ID("com8-controller0x21caa6.AuthController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComAuthController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
@@ -125,10 +125,19 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 		return err
 	}
 
-	// component: com10-interceptor0xbd9b3b.DebugInterceptor
+	// component: com10-controller0x21caa6.LogoutController
 	cominfobuilder.Next()
-	cominfobuilder.ID("com10-interceptor0xbd9b3b.DebugInterceptor").Class("rest-interceptor-registry").Aliases("").Scope("")
-	cominfobuilder.Factory((&comFactory4pComDebugInterceptor{}).init())
+	cominfobuilder.ID("com10-controller0x21caa6.LogoutController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComLogoutController{}).init())
+	err = cominfobuilder.CreateTo(cb)
+	if err != nil {
+		return err
+	}
+
+	// component: com11-controller0x21caa6.EmailVerificationController
+	cominfobuilder.Next()
+	cominfobuilder.ID("com11-controller0x21caa6.EmailVerificationController").Class("rest-controller").Aliases("").Scope("")
+	cominfobuilder.Factory((&comFactory4pComEmailVerificationController{}).init())
 	err = cominfobuilder.CreateTo(cb)
 	if err != nil {
 		return err
@@ -141,297 +150,73 @@ func autoGenConfig(cb application.ConfigBuilder) error {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComAccountDaoImpl : the factory of component: express-data-account-dao
-type comFactory4pComAccountDaoImpl struct {
+// comFactory4pComPasswordServiceImpl : the factory of component: express-PasswordService
+type comFactory4pComPasswordServiceImpl struct {
 
-    mPrototype * dao0xf4c226.AccountDaoImpl
-
-	
-	mDSSelector config.InjectionSelector
-
-}
-
-func (inst * comFactory4pComAccountDaoImpl) init() application.ComponentFactory {
-
-	
-	inst.mDSSelector = config.NewInjectionSelector("#gorm-datasource-default",nil)
-
-
-	inst.mPrototype = inst.newObject()
-    return inst
-}
-
-func (inst * comFactory4pComAccountDaoImpl) newObject() * dao0xf4c226.AccountDaoImpl {
-	return & dao0xf4c226.AccountDaoImpl {}
-}
-
-func (inst * comFactory4pComAccountDaoImpl) castObject(instance application.ComponentInstance) * dao0xf4c226.AccountDaoImpl {
-	return instance.Get().(*dao0xf4c226.AccountDaoImpl)
-}
-
-func (inst * comFactory4pComAccountDaoImpl) GetPrototype() lang.Object {
-	return inst.mPrototype
-}
-
-func (inst * comFactory4pComAccountDaoImpl) NewInstance() application.ComponentInstance {
-	return config.SimpleInstance(inst, inst.newObject())
-}
-
-func (inst * comFactory4pComAccountDaoImpl) AfterService() application.ComponentAfterService {
-	return inst
-}
-
-func (inst * comFactory4pComAccountDaoImpl) Init(instance application.ComponentInstance) error {
-	return nil
-}
-
-func (inst * comFactory4pComAccountDaoImpl) Destroy(instance application.ComponentInstance) error {
-	return nil
-}
-
-func (inst * comFactory4pComAccountDaoImpl) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
-	
-	obj := inst.castObject(instance)
-	obj.DS = inst.getterForFieldDSSelector(context)
-	return context.LastError()
-}
-
-//getterForFieldDSSelector
-func (inst * comFactory4pComAccountDaoImpl) getterForFieldDSSelector (context application.InstanceContext) datasource0x68a737.Source {
-
-	o1 := inst.mDSSelector.GetOne(context)
-	o2, ok := o1.(datasource0x68a737.Source)
-	if !ok {
-		eb := &util.ErrorBuilder{}
-		eb.Message("bad cast")
-		eb.Set("com", "express-data-account-dao")
-		eb.Set("field", "DS")
-		eb.Set("type1", "?")
-		eb.Set("type2", "datasource0x68a737.Source")
-		context.HandleError(eb.Create())
-		return nil
-	}
-	return o2
-}
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-
-// comFactory4pComAutoMigratorManager : the factory of component: com1-dao0xf4c226.AutoMigratorManager
-type comFactory4pComAutoMigratorManager struct {
-
-    mPrototype * dao0xf4c226.AutoMigratorManager
-
-	
-	mDSSelector config.InjectionSelector
-	mItemsSelector config.InjectionSelector
-
-}
-
-func (inst * comFactory4pComAutoMigratorManager) init() application.ComponentFactory {
-
-	
-	inst.mDSSelector = config.NewInjectionSelector("#gorm-datasource-default",nil)
-	inst.mItemsSelector = config.NewInjectionSelector(".express-server-data-auto-migrator",nil)
-
-
-	inst.mPrototype = inst.newObject()
-    return inst
-}
-
-func (inst * comFactory4pComAutoMigratorManager) newObject() * dao0xf4c226.AutoMigratorManager {
-	return & dao0xf4c226.AutoMigratorManager {}
-}
-
-func (inst * comFactory4pComAutoMigratorManager) castObject(instance application.ComponentInstance) * dao0xf4c226.AutoMigratorManager {
-	return instance.Get().(*dao0xf4c226.AutoMigratorManager)
-}
-
-func (inst * comFactory4pComAutoMigratorManager) GetPrototype() lang.Object {
-	return inst.mPrototype
-}
-
-func (inst * comFactory4pComAutoMigratorManager) NewInstance() application.ComponentInstance {
-	return config.SimpleInstance(inst, inst.newObject())
-}
-
-func (inst * comFactory4pComAutoMigratorManager) AfterService() application.ComponentAfterService {
-	return inst
-}
-
-func (inst * comFactory4pComAutoMigratorManager) Init(instance application.ComponentInstance) error {
-	return inst.castObject(instance).Init()
-}
-
-func (inst * comFactory4pComAutoMigratorManager) Destroy(instance application.ComponentInstance) error {
-	return nil
-}
-
-func (inst * comFactory4pComAutoMigratorManager) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
-	
-	obj := inst.castObject(instance)
-	obj.DS = inst.getterForFieldDSSelector(context)
-	obj.Items = inst.getterForFieldItemsSelector(context)
-	return context.LastError()
-}
-
-//getterForFieldDSSelector
-func (inst * comFactory4pComAutoMigratorManager) getterForFieldDSSelector (context application.InstanceContext) datasource0x68a737.Source {
-
-	o1 := inst.mDSSelector.GetOne(context)
-	o2, ok := o1.(datasource0x68a737.Source)
-	if !ok {
-		eb := &util.ErrorBuilder{}
-		eb.Message("bad cast")
-		eb.Set("com", "com1-dao0xf4c226.AutoMigratorManager")
-		eb.Set("field", "DS")
-		eb.Set("type1", "?")
-		eb.Set("type2", "datasource0x68a737.Source")
-		context.HandleError(eb.Create())
-		return nil
-	}
-	return o2
-}
-
-//getterForFieldItemsSelector
-func (inst * comFactory4pComAutoMigratorManager) getterForFieldItemsSelector (context application.InstanceContext) []dao0xf4c226.AutoMigrator {
-	list1 := inst.mItemsSelector.GetList(context)
-	list2 := make([]dao0xf4c226.AutoMigrator, 0, len(list1))
-	for _, item1 := range list1 {
-		item2, ok := item1.(dao0xf4c226.AutoMigrator)
-		if ok {
-			list2 = append(list2, item2)
-		}
-	}
-	return list2
-}
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-
-// comFactory4pComEmailAuthenticator : the factory of component: com2-security0x9ba940.EmailAuthenticator
-type comFactory4pComEmailAuthenticator struct {
-
-    mPrototype * security0x9ba940.EmailAuthenticator
-
-	
-
-}
-
-func (inst * comFactory4pComEmailAuthenticator) init() application.ComponentFactory {
-
-	
-
-
-	inst.mPrototype = inst.newObject()
-    return inst
-}
-
-func (inst * comFactory4pComEmailAuthenticator) newObject() * security0x9ba940.EmailAuthenticator {
-	return & security0x9ba940.EmailAuthenticator {}
-}
-
-func (inst * comFactory4pComEmailAuthenticator) castObject(instance application.ComponentInstance) * security0x9ba940.EmailAuthenticator {
-	return instance.Get().(*security0x9ba940.EmailAuthenticator)
-}
-
-func (inst * comFactory4pComEmailAuthenticator) GetPrototype() lang.Object {
-	return inst.mPrototype
-}
-
-func (inst * comFactory4pComEmailAuthenticator) NewInstance() application.ComponentInstance {
-	return config.SimpleInstance(inst, inst.newObject())
-}
-
-func (inst * comFactory4pComEmailAuthenticator) AfterService() application.ComponentAfterService {
-	return inst
-}
-
-func (inst * comFactory4pComEmailAuthenticator) Init(instance application.ComponentInstance) error {
-	return nil
-}
-
-func (inst * comFactory4pComEmailAuthenticator) Destroy(instance application.ComponentInstance) error {
-	return nil
-}
-
-func (inst * comFactory4pComEmailAuthenticator) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
-	return nil
-}
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-
-// comFactory4pComPasswordAuthenticator : the factory of component: com3-security0x9ba940.PasswordAuthenticator
-type comFactory4pComPasswordAuthenticator struct {
-
-    mPrototype * security0x9ba940.PasswordAuthenticator
+    mPrototype * impl0x29d072.PasswordServiceImpl
 
 	
 	mAccountDAOSelector config.InjectionSelector
-	mPasswordServiceSelector config.InjectionSelector
+	mEmailVeriServiceSelector config.InjectionSelector
 
 }
 
-func (inst * comFactory4pComPasswordAuthenticator) init() application.ComponentFactory {
+func (inst * comFactory4pComPasswordServiceImpl) init() application.ComponentFactory {
 
 	
 	inst.mAccountDAOSelector = config.NewInjectionSelector("#express-data-account-dao",nil)
-	inst.mPasswordServiceSelector = config.NewInjectionSelector("#express-PasswordService",nil)
+	inst.mEmailVeriServiceSelector = config.NewInjectionSelector("#express-EmailVerificationService",nil)
 
 
 	inst.mPrototype = inst.newObject()
     return inst
 }
 
-func (inst * comFactory4pComPasswordAuthenticator) newObject() * security0x9ba940.PasswordAuthenticator {
-	return & security0x9ba940.PasswordAuthenticator {}
+func (inst * comFactory4pComPasswordServiceImpl) newObject() * impl0x29d072.PasswordServiceImpl {
+	return & impl0x29d072.PasswordServiceImpl {}
 }
 
-func (inst * comFactory4pComPasswordAuthenticator) castObject(instance application.ComponentInstance) * security0x9ba940.PasswordAuthenticator {
-	return instance.Get().(*security0x9ba940.PasswordAuthenticator)
+func (inst * comFactory4pComPasswordServiceImpl) castObject(instance application.ComponentInstance) * impl0x29d072.PasswordServiceImpl {
+	return instance.Get().(*impl0x29d072.PasswordServiceImpl)
 }
 
-func (inst * comFactory4pComPasswordAuthenticator) GetPrototype() lang.Object {
+func (inst * comFactory4pComPasswordServiceImpl) GetPrototype() lang.Object {
 	return inst.mPrototype
 }
 
-func (inst * comFactory4pComPasswordAuthenticator) NewInstance() application.ComponentInstance {
+func (inst * comFactory4pComPasswordServiceImpl) NewInstance() application.ComponentInstance {
 	return config.SimpleInstance(inst, inst.newObject())
 }
 
-func (inst * comFactory4pComPasswordAuthenticator) AfterService() application.ComponentAfterService {
+func (inst * comFactory4pComPasswordServiceImpl) AfterService() application.ComponentAfterService {
 	return inst
 }
 
-func (inst * comFactory4pComPasswordAuthenticator) Init(instance application.ComponentInstance) error {
+func (inst * comFactory4pComPasswordServiceImpl) Init(instance application.ComponentInstance) error {
 	return nil
 }
 
-func (inst * comFactory4pComPasswordAuthenticator) Destroy(instance application.ComponentInstance) error {
+func (inst * comFactory4pComPasswordServiceImpl) Destroy(instance application.ComponentInstance) error {
 	return nil
 }
 
-func (inst * comFactory4pComPasswordAuthenticator) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+func (inst * comFactory4pComPasswordServiceImpl) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
 	
 	obj := inst.castObject(instance)
 	obj.AccountDAO = inst.getterForFieldAccountDAOSelector(context)
-	obj.PasswordService = inst.getterForFieldPasswordServiceSelector(context)
+	obj.EmailVeriService = inst.getterForFieldEmailVeriServiceSelector(context)
 	return context.LastError()
 }
 
 //getterForFieldAccountDAOSelector
-func (inst * comFactory4pComPasswordAuthenticator) getterForFieldAccountDAOSelector (context application.InstanceContext) dao0xf4c226.Account {
+func (inst * comFactory4pComPasswordServiceImpl) getterForFieldAccountDAOSelector (context application.InstanceContext) dao0xf4c226.Account {
 
 	o1 := inst.mAccountDAOSelector.GetOne(context)
 	o2, ok := o1.(dao0xf4c226.Account)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com3-security0x9ba940.PasswordAuthenticator")
+		eb.Set("com", "express-PasswordService")
 		eb.Set("field", "AccountDAO")
 		eb.Set("type1", "?")
 		eb.Set("type2", "dao0xf4c226.Account")
@@ -441,18 +226,18 @@ func (inst * comFactory4pComPasswordAuthenticator) getterForFieldAccountDAOSelec
 	return o2
 }
 
-//getterForFieldPasswordServiceSelector
-func (inst * comFactory4pComPasswordAuthenticator) getterForFieldPasswordServiceSelector (context application.InstanceContext) service0xd29b29.PasswordService {
+//getterForFieldEmailVeriServiceSelector
+func (inst * comFactory4pComPasswordServiceImpl) getterForFieldEmailVeriServiceSelector (context application.InstanceContext) service0xd29b29.EmailVerificationService {
 
-	o1 := inst.mPasswordServiceSelector.GetOne(context)
-	o2, ok := o1.(service0xd29b29.PasswordService)
+	o1 := inst.mEmailVeriServiceSelector.GetOne(context)
+	o2, ok := o1.(service0xd29b29.EmailVerificationService)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com3-security0x9ba940.PasswordAuthenticator")
-		eb.Set("field", "PasswordService")
+		eb.Set("com", "express-PasswordService")
+		eb.Set("field", "EmailVeriService")
 		eb.Set("type1", "?")
-		eb.Set("type2", "service0xd29b29.PasswordService")
+		eb.Set("type2", "service0xd29b29.EmailVerificationService")
 		context.HandleError(eb.Create())
 		return nil
 	}
@@ -572,10 +357,180 @@ func (inst * comFactory4pComEmailVerificationServiceImpl) getterForFieldSenderAd
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComPasswordServiceImpl : the factory of component: express-PasswordService
-type comFactory4pComPasswordServiceImpl struct {
+// comFactory4pComAccountDaoImpl : the factory of component: express-data-account-dao
+type comFactory4pComAccountDaoImpl struct {
 
-    mPrototype * impl0x29d072.PasswordServiceImpl
+    mPrototype * dao0xf4c226.AccountDaoImpl
+
+	
+	mDSSelector config.InjectionSelector
+
+}
+
+func (inst * comFactory4pComAccountDaoImpl) init() application.ComponentFactory {
+
+	
+	inst.mDSSelector = config.NewInjectionSelector("#gorm-datasource-default",nil)
+
+
+	inst.mPrototype = inst.newObject()
+    return inst
+}
+
+func (inst * comFactory4pComAccountDaoImpl) newObject() * dao0xf4c226.AccountDaoImpl {
+	return & dao0xf4c226.AccountDaoImpl {}
+}
+
+func (inst * comFactory4pComAccountDaoImpl) castObject(instance application.ComponentInstance) * dao0xf4c226.AccountDaoImpl {
+	return instance.Get().(*dao0xf4c226.AccountDaoImpl)
+}
+
+func (inst * comFactory4pComAccountDaoImpl) GetPrototype() lang.Object {
+	return inst.mPrototype
+}
+
+func (inst * comFactory4pComAccountDaoImpl) NewInstance() application.ComponentInstance {
+	return config.SimpleInstance(inst, inst.newObject())
+}
+
+func (inst * comFactory4pComAccountDaoImpl) AfterService() application.ComponentAfterService {
+	return inst
+}
+
+func (inst * comFactory4pComAccountDaoImpl) Init(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComAccountDaoImpl) Destroy(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComAccountDaoImpl) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+	
+	obj := inst.castObject(instance)
+	obj.DS = inst.getterForFieldDSSelector(context)
+	return context.LastError()
+}
+
+//getterForFieldDSSelector
+func (inst * comFactory4pComAccountDaoImpl) getterForFieldDSSelector (context application.InstanceContext) datasource0x68a737.Source {
+
+	o1 := inst.mDSSelector.GetOne(context)
+	o2, ok := o1.(datasource0x68a737.Source)
+	if !ok {
+		eb := &util.ErrorBuilder{}
+		eb.Message("bad cast")
+		eb.Set("com", "express-data-account-dao")
+		eb.Set("field", "DS")
+		eb.Set("type1", "?")
+		eb.Set("type2", "datasource0x68a737.Source")
+		context.HandleError(eb.Create())
+		return nil
+	}
+	return o2
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+// comFactory4pComAutoMigratorManager : the factory of component: com3-dao0xf4c226.AutoMigratorManager
+type comFactory4pComAutoMigratorManager struct {
+
+    mPrototype * dao0xf4c226.AutoMigratorManager
+
+	
+	mDSSelector config.InjectionSelector
+	mItemsSelector config.InjectionSelector
+
+}
+
+func (inst * comFactory4pComAutoMigratorManager) init() application.ComponentFactory {
+
+	
+	inst.mDSSelector = config.NewInjectionSelector("#gorm-datasource-default",nil)
+	inst.mItemsSelector = config.NewInjectionSelector(".express-server-data-auto-migrator",nil)
+
+
+	inst.mPrototype = inst.newObject()
+    return inst
+}
+
+func (inst * comFactory4pComAutoMigratorManager) newObject() * dao0xf4c226.AutoMigratorManager {
+	return & dao0xf4c226.AutoMigratorManager {}
+}
+
+func (inst * comFactory4pComAutoMigratorManager) castObject(instance application.ComponentInstance) * dao0xf4c226.AutoMigratorManager {
+	return instance.Get().(*dao0xf4c226.AutoMigratorManager)
+}
+
+func (inst * comFactory4pComAutoMigratorManager) GetPrototype() lang.Object {
+	return inst.mPrototype
+}
+
+func (inst * comFactory4pComAutoMigratorManager) NewInstance() application.ComponentInstance {
+	return config.SimpleInstance(inst, inst.newObject())
+}
+
+func (inst * comFactory4pComAutoMigratorManager) AfterService() application.ComponentAfterService {
+	return inst
+}
+
+func (inst * comFactory4pComAutoMigratorManager) Init(instance application.ComponentInstance) error {
+	return inst.castObject(instance).Init()
+}
+
+func (inst * comFactory4pComAutoMigratorManager) Destroy(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComAutoMigratorManager) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+	
+	obj := inst.castObject(instance)
+	obj.DS = inst.getterForFieldDSSelector(context)
+	obj.Items = inst.getterForFieldItemsSelector(context)
+	return context.LastError()
+}
+
+//getterForFieldDSSelector
+func (inst * comFactory4pComAutoMigratorManager) getterForFieldDSSelector (context application.InstanceContext) datasource0x68a737.Source {
+
+	o1 := inst.mDSSelector.GetOne(context)
+	o2, ok := o1.(datasource0x68a737.Source)
+	if !ok {
+		eb := &util.ErrorBuilder{}
+		eb.Message("bad cast")
+		eb.Set("com", "com3-dao0xf4c226.AutoMigratorManager")
+		eb.Set("field", "DS")
+		eb.Set("type1", "?")
+		eb.Set("type2", "datasource0x68a737.Source")
+		context.HandleError(eb.Create())
+		return nil
+	}
+	return o2
+}
+
+//getterForFieldItemsSelector
+func (inst * comFactory4pComAutoMigratorManager) getterForFieldItemsSelector (context application.InstanceContext) []dao0xf4c226.AutoMigrator {
+	list1 := inst.mItemsSelector.GetList(context)
+	list2 := make([]dao0xf4c226.AutoMigrator, 0, len(list1))
+	for _, item1 := range list1 {
+		item2, ok := item1.(dao0xf4c226.AutoMigrator)
+		if ok {
+			list2 = append(list2, item2)
+		}
+	}
+	return list2
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+// comFactory4pComEmailAuthenticator : the factory of component: com4-security0x9ba940.EmailAuthenticator
+type comFactory4pComEmailAuthenticator struct {
+
+    mPrototype * security0x9ba940.EmailAuthenticator
 
 	
 	mAccountDAOSelector config.InjectionSelector
@@ -583,7 +538,7 @@ type comFactory4pComPasswordServiceImpl struct {
 
 }
 
-func (inst * comFactory4pComPasswordServiceImpl) init() application.ComponentFactory {
+func (inst * comFactory4pComEmailAuthenticator) init() application.ComponentFactory {
 
 	
 	inst.mAccountDAOSelector = config.NewInjectionSelector("#express-data-account-dao",nil)
@@ -594,35 +549,35 @@ func (inst * comFactory4pComPasswordServiceImpl) init() application.ComponentFac
     return inst
 }
 
-func (inst * comFactory4pComPasswordServiceImpl) newObject() * impl0x29d072.PasswordServiceImpl {
-	return & impl0x29d072.PasswordServiceImpl {}
+func (inst * comFactory4pComEmailAuthenticator) newObject() * security0x9ba940.EmailAuthenticator {
+	return & security0x9ba940.EmailAuthenticator {}
 }
 
-func (inst * comFactory4pComPasswordServiceImpl) castObject(instance application.ComponentInstance) * impl0x29d072.PasswordServiceImpl {
-	return instance.Get().(*impl0x29d072.PasswordServiceImpl)
+func (inst * comFactory4pComEmailAuthenticator) castObject(instance application.ComponentInstance) * security0x9ba940.EmailAuthenticator {
+	return instance.Get().(*security0x9ba940.EmailAuthenticator)
 }
 
-func (inst * comFactory4pComPasswordServiceImpl) GetPrototype() lang.Object {
+func (inst * comFactory4pComEmailAuthenticator) GetPrototype() lang.Object {
 	return inst.mPrototype
 }
 
-func (inst * comFactory4pComPasswordServiceImpl) NewInstance() application.ComponentInstance {
+func (inst * comFactory4pComEmailAuthenticator) NewInstance() application.ComponentInstance {
 	return config.SimpleInstance(inst, inst.newObject())
 }
 
-func (inst * comFactory4pComPasswordServiceImpl) AfterService() application.ComponentAfterService {
+func (inst * comFactory4pComEmailAuthenticator) AfterService() application.ComponentAfterService {
 	return inst
 }
 
-func (inst * comFactory4pComPasswordServiceImpl) Init(instance application.ComponentInstance) error {
+func (inst * comFactory4pComEmailAuthenticator) Init(instance application.ComponentInstance) error {
 	return nil
 }
 
-func (inst * comFactory4pComPasswordServiceImpl) Destroy(instance application.ComponentInstance) error {
+func (inst * comFactory4pComEmailAuthenticator) Destroy(instance application.ComponentInstance) error {
 	return nil
 }
 
-func (inst * comFactory4pComPasswordServiceImpl) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+func (inst * comFactory4pComEmailAuthenticator) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
 	
 	obj := inst.castObject(instance)
 	obj.AccountDAO = inst.getterForFieldAccountDAOSelector(context)
@@ -631,14 +586,14 @@ func (inst * comFactory4pComPasswordServiceImpl) Inject(instance application.Com
 }
 
 //getterForFieldAccountDAOSelector
-func (inst * comFactory4pComPasswordServiceImpl) getterForFieldAccountDAOSelector (context application.InstanceContext) dao0xf4c226.Account {
+func (inst * comFactory4pComEmailAuthenticator) getterForFieldAccountDAOSelector (context application.InstanceContext) dao0xf4c226.Account {
 
 	o1 := inst.mAccountDAOSelector.GetOne(context)
 	o2, ok := o1.(dao0xf4c226.Account)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "express-PasswordService")
+		eb.Set("com", "com4-security0x9ba940.EmailAuthenticator")
 		eb.Set("field", "AccountDAO")
 		eb.Set("type1", "?")
 		eb.Set("type2", "dao0xf4c226.Account")
@@ -649,14 +604,14 @@ func (inst * comFactory4pComPasswordServiceImpl) getterForFieldAccountDAOSelecto
 }
 
 //getterForFieldEmailVeriServiceSelector
-func (inst * comFactory4pComPasswordServiceImpl) getterForFieldEmailVeriServiceSelector (context application.InstanceContext) service0xd29b29.EmailVerificationService {
+func (inst * comFactory4pComEmailAuthenticator) getterForFieldEmailVeriServiceSelector (context application.InstanceContext) service0xd29b29.EmailVerificationService {
 
 	o1 := inst.mEmailVeriServiceSelector.GetOne(context)
 	o2, ok := o1.(service0xd29b29.EmailVerificationService)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "express-PasswordService")
+		eb.Set("com", "com4-security0x9ba940.EmailAuthenticator")
 		eb.Set("field", "EmailVeriService")
 		eb.Set("type1", "?")
 		eb.Set("type2", "service0xd29b29.EmailVerificationService")
@@ -670,98 +625,152 @@ func (inst * comFactory4pComPasswordServiceImpl) getterForFieldEmailVeriServiceS
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComEmailVerificationController : the factory of component: com6-controller0x21caa6.EmailVerificationController
-type comFactory4pComEmailVerificationController struct {
+// comFactory4pComPasswordAuthenticator : the factory of component: com5-security0x9ba940.PasswordAuthenticator
+type comFactory4pComPasswordAuthenticator struct {
 
-    mPrototype * controller0x21caa6.EmailVerificationController
+    mPrototype * security0x9ba940.PasswordAuthenticator
 
 	
-	mEmailVeriServiceSelector config.InjectionSelector
-	mResponderSelector config.InjectionSelector
+	mAccountDAOSelector config.InjectionSelector
+	mPasswordServiceSelector config.InjectionSelector
 
 }
 
-func (inst * comFactory4pComEmailVerificationController) init() application.ComponentFactory {
+func (inst * comFactory4pComPasswordAuthenticator) init() application.ComponentFactory {
 
 	
-	inst.mEmailVeriServiceSelector = config.NewInjectionSelector("#express-EmailVerificationService",nil)
-	inst.mResponderSelector = config.NewInjectionSelector("#glass-main-responder",nil)
+	inst.mAccountDAOSelector = config.NewInjectionSelector("#express-data-account-dao",nil)
+	inst.mPasswordServiceSelector = config.NewInjectionSelector("#express-PasswordService",nil)
 
 
 	inst.mPrototype = inst.newObject()
     return inst
 }
 
-func (inst * comFactory4pComEmailVerificationController) newObject() * controller0x21caa6.EmailVerificationController {
-	return & controller0x21caa6.EmailVerificationController {}
+func (inst * comFactory4pComPasswordAuthenticator) newObject() * security0x9ba940.PasswordAuthenticator {
+	return & security0x9ba940.PasswordAuthenticator {}
 }
 
-func (inst * comFactory4pComEmailVerificationController) castObject(instance application.ComponentInstance) * controller0x21caa6.EmailVerificationController {
-	return instance.Get().(*controller0x21caa6.EmailVerificationController)
+func (inst * comFactory4pComPasswordAuthenticator) castObject(instance application.ComponentInstance) * security0x9ba940.PasswordAuthenticator {
+	return instance.Get().(*security0x9ba940.PasswordAuthenticator)
 }
 
-func (inst * comFactory4pComEmailVerificationController) GetPrototype() lang.Object {
+func (inst * comFactory4pComPasswordAuthenticator) GetPrototype() lang.Object {
 	return inst.mPrototype
 }
 
-func (inst * comFactory4pComEmailVerificationController) NewInstance() application.ComponentInstance {
+func (inst * comFactory4pComPasswordAuthenticator) NewInstance() application.ComponentInstance {
 	return config.SimpleInstance(inst, inst.newObject())
 }
 
-func (inst * comFactory4pComEmailVerificationController) AfterService() application.ComponentAfterService {
+func (inst * comFactory4pComPasswordAuthenticator) AfterService() application.ComponentAfterService {
 	return inst
 }
 
-func (inst * comFactory4pComEmailVerificationController) Init(instance application.ComponentInstance) error {
+func (inst * comFactory4pComPasswordAuthenticator) Init(instance application.ComponentInstance) error {
 	return nil
 }
 
-func (inst * comFactory4pComEmailVerificationController) Destroy(instance application.ComponentInstance) error {
+func (inst * comFactory4pComPasswordAuthenticator) Destroy(instance application.ComponentInstance) error {
 	return nil
 }
 
-func (inst * comFactory4pComEmailVerificationController) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+func (inst * comFactory4pComPasswordAuthenticator) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
 	
 	obj := inst.castObject(instance)
-	obj.EmailVeriService = inst.getterForFieldEmailVeriServiceSelector(context)
-	obj.Responder = inst.getterForFieldResponderSelector(context)
+	obj.AccountDAO = inst.getterForFieldAccountDAOSelector(context)
+	obj.PasswordService = inst.getterForFieldPasswordServiceSelector(context)
 	return context.LastError()
 }
 
-//getterForFieldEmailVeriServiceSelector
-func (inst * comFactory4pComEmailVerificationController) getterForFieldEmailVeriServiceSelector (context application.InstanceContext) service0xd29b29.EmailVerificationService {
+//getterForFieldAccountDAOSelector
+func (inst * comFactory4pComPasswordAuthenticator) getterForFieldAccountDAOSelector (context application.InstanceContext) dao0xf4c226.Account {
 
-	o1 := inst.mEmailVeriServiceSelector.GetOne(context)
-	o2, ok := o1.(service0xd29b29.EmailVerificationService)
+	o1 := inst.mAccountDAOSelector.GetOne(context)
+	o2, ok := o1.(dao0xf4c226.Account)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com6-controller0x21caa6.EmailVerificationController")
-		eb.Set("field", "EmailVeriService")
+		eb.Set("com", "com5-security0x9ba940.PasswordAuthenticator")
+		eb.Set("field", "AccountDAO")
 		eb.Set("type1", "?")
-		eb.Set("type2", "service0xd29b29.EmailVerificationService")
+		eb.Set("type2", "dao0xf4c226.Account")
 		context.HandleError(eb.Create())
 		return nil
 	}
 	return o2
 }
 
-//getterForFieldResponderSelector
-func (inst * comFactory4pComEmailVerificationController) getterForFieldResponderSelector (context application.InstanceContext) glass0x47343f.MainResponder {
+//getterForFieldPasswordServiceSelector
+func (inst * comFactory4pComPasswordAuthenticator) getterForFieldPasswordServiceSelector (context application.InstanceContext) service0xd29b29.PasswordService {
 
-	o1 := inst.mResponderSelector.GetOne(context)
-	o2, ok := o1.(glass0x47343f.MainResponder)
+	o1 := inst.mPasswordServiceSelector.GetOne(context)
+	o2, ok := o1.(service0xd29b29.PasswordService)
 	if !ok {
 		eb := &util.ErrorBuilder{}
 		eb.Message("bad cast")
-		eb.Set("com", "com6-controller0x21caa6.EmailVerificationController")
-		eb.Set("field", "Responder")
+		eb.Set("com", "com5-security0x9ba940.PasswordAuthenticator")
+		eb.Set("field", "PasswordService")
 		eb.Set("type1", "?")
-		eb.Set("type2", "glass0x47343f.MainResponder")
+		eb.Set("type2", "service0xd29b29.PasswordService")
 		context.HandleError(eb.Create())
 		return nil
 	}
 	return o2
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+// comFactory4pComDebugInterceptor : the factory of component: com6-interceptor0xbd9b3b.DebugInterceptor
+type comFactory4pComDebugInterceptor struct {
+
+    mPrototype * interceptor0xbd9b3b.DebugInterceptor
+
+	
+
+}
+
+func (inst * comFactory4pComDebugInterceptor) init() application.ComponentFactory {
+
+	
+
+
+	inst.mPrototype = inst.newObject()
+    return inst
+}
+
+func (inst * comFactory4pComDebugInterceptor) newObject() * interceptor0xbd9b3b.DebugInterceptor {
+	return & interceptor0xbd9b3b.DebugInterceptor {}
+}
+
+func (inst * comFactory4pComDebugInterceptor) castObject(instance application.ComponentInstance) * interceptor0xbd9b3b.DebugInterceptor {
+	return instance.Get().(*interceptor0xbd9b3b.DebugInterceptor)
+}
+
+func (inst * comFactory4pComDebugInterceptor) GetPrototype() lang.Object {
+	return inst.mPrototype
+}
+
+func (inst * comFactory4pComDebugInterceptor) NewInstance() application.ComponentInstance {
+	return config.SimpleInstance(inst, inst.newObject())
+}
+
+func (inst * comFactory4pComDebugInterceptor) AfterService() application.ComponentAfterService {
+	return inst
+}
+
+func (inst * comFactory4pComDebugInterceptor) Init(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComDebugInterceptor) Destroy(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComDebugInterceptor) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+	return nil
 }
 
 
@@ -822,77 +831,54 @@ func (inst * comFactory4pComExampleController) Inject(instance application.Compo
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComLogoutController : the factory of component: com8-controller0x21caa6.LogoutController
-type comFactory4pComLogoutController struct {
+// comFactory4pComAuthController : the factory of component: com8-controller0x21caa6.AuthController
+type comFactory4pComAuthController struct {
 
-    mPrototype * controller0x21caa6.LogoutController
+    mPrototype * controller0x21caa6.AuthController
 
 	
-	mSubjectsSelector config.InjectionSelector
 
 }
 
-func (inst * comFactory4pComLogoutController) init() application.ComponentFactory {
+func (inst * comFactory4pComAuthController) init() application.ComponentFactory {
 
 	
-	inst.mSubjectsSelector = config.NewInjectionSelector("#keeper-subject-manager",nil)
 
 
 	inst.mPrototype = inst.newObject()
     return inst
 }
 
-func (inst * comFactory4pComLogoutController) newObject() * controller0x21caa6.LogoutController {
-	return & controller0x21caa6.LogoutController {}
+func (inst * comFactory4pComAuthController) newObject() * controller0x21caa6.AuthController {
+	return & controller0x21caa6.AuthController {}
 }
 
-func (inst * comFactory4pComLogoutController) castObject(instance application.ComponentInstance) * controller0x21caa6.LogoutController {
-	return instance.Get().(*controller0x21caa6.LogoutController)
+func (inst * comFactory4pComAuthController) castObject(instance application.ComponentInstance) * controller0x21caa6.AuthController {
+	return instance.Get().(*controller0x21caa6.AuthController)
 }
 
-func (inst * comFactory4pComLogoutController) GetPrototype() lang.Object {
+func (inst * comFactory4pComAuthController) GetPrototype() lang.Object {
 	return inst.mPrototype
 }
 
-func (inst * comFactory4pComLogoutController) NewInstance() application.ComponentInstance {
+func (inst * comFactory4pComAuthController) NewInstance() application.ComponentInstance {
 	return config.SimpleInstance(inst, inst.newObject())
 }
 
-func (inst * comFactory4pComLogoutController) AfterService() application.ComponentAfterService {
+func (inst * comFactory4pComAuthController) AfterService() application.ComponentAfterService {
 	return inst
 }
 
-func (inst * comFactory4pComLogoutController) Init(instance application.ComponentInstance) error {
+func (inst * comFactory4pComAuthController) Init(instance application.ComponentInstance) error {
 	return nil
 }
 
-func (inst * comFactory4pComLogoutController) Destroy(instance application.ComponentInstance) error {
+func (inst * comFactory4pComAuthController) Destroy(instance application.ComponentInstance) error {
 	return nil
 }
 
-func (inst * comFactory4pComLogoutController) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
-	
-	obj := inst.castObject(instance)
-	obj.Subjects = inst.getterForFieldSubjectsSelector(context)
-	return context.LastError()
-}
-
-//getterForFieldSubjectsSelector
-func (inst * comFactory4pComLogoutController) getterForFieldSubjectsSelector (context application.InstanceContext) keeper0x6d39ef.SubjectManager {
-
-	o1 := inst.mSubjectsSelector.GetOne(context)
-	o2, ok := o1.(keeper0x6d39ef.SubjectManager)
-	if !ok {
-		eb := &util.ErrorBuilder{}
-		eb.Message("bad cast")
-		eb.Set("com", "com8-controller0x21caa6.LogoutController")
-		eb.Set("field", "Subjects")
-		eb.Set("type1", "?")
-		eb.Set("type2", "keeper0x6d39ef.SubjectManager")
-		context.HandleError(eb.Create())
-		return nil
-	}
-	return o2
+func (inst * comFactory4pComAuthController) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+	return nil
 }
 
 
@@ -997,54 +983,175 @@ func (inst * comFactory4pComPasswordController) getterForFieldPasswordServiceSel
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// comFactory4pComDebugInterceptor : the factory of component: com10-interceptor0xbd9b3b.DebugInterceptor
-type comFactory4pComDebugInterceptor struct {
+// comFactory4pComLogoutController : the factory of component: com10-controller0x21caa6.LogoutController
+type comFactory4pComLogoutController struct {
 
-    mPrototype * interceptor0xbd9b3b.DebugInterceptor
+    mPrototype * controller0x21caa6.LogoutController
 
 	
+	mSubjectsSelector config.InjectionSelector
 
 }
 
-func (inst * comFactory4pComDebugInterceptor) init() application.ComponentFactory {
+func (inst * comFactory4pComLogoutController) init() application.ComponentFactory {
 
 	
+	inst.mSubjectsSelector = config.NewInjectionSelector("#keeper-subject-manager",nil)
 
 
 	inst.mPrototype = inst.newObject()
     return inst
 }
 
-func (inst * comFactory4pComDebugInterceptor) newObject() * interceptor0xbd9b3b.DebugInterceptor {
-	return & interceptor0xbd9b3b.DebugInterceptor {}
+func (inst * comFactory4pComLogoutController) newObject() * controller0x21caa6.LogoutController {
+	return & controller0x21caa6.LogoutController {}
 }
 
-func (inst * comFactory4pComDebugInterceptor) castObject(instance application.ComponentInstance) * interceptor0xbd9b3b.DebugInterceptor {
-	return instance.Get().(*interceptor0xbd9b3b.DebugInterceptor)
+func (inst * comFactory4pComLogoutController) castObject(instance application.ComponentInstance) * controller0x21caa6.LogoutController {
+	return instance.Get().(*controller0x21caa6.LogoutController)
 }
 
-func (inst * comFactory4pComDebugInterceptor) GetPrototype() lang.Object {
+func (inst * comFactory4pComLogoutController) GetPrototype() lang.Object {
 	return inst.mPrototype
 }
 
-func (inst * comFactory4pComDebugInterceptor) NewInstance() application.ComponentInstance {
+func (inst * comFactory4pComLogoutController) NewInstance() application.ComponentInstance {
 	return config.SimpleInstance(inst, inst.newObject())
 }
 
-func (inst * comFactory4pComDebugInterceptor) AfterService() application.ComponentAfterService {
+func (inst * comFactory4pComLogoutController) AfterService() application.ComponentAfterService {
 	return inst
 }
 
-func (inst * comFactory4pComDebugInterceptor) Init(instance application.ComponentInstance) error {
+func (inst * comFactory4pComLogoutController) Init(instance application.ComponentInstance) error {
 	return nil
 }
 
-func (inst * comFactory4pComDebugInterceptor) Destroy(instance application.ComponentInstance) error {
+func (inst * comFactory4pComLogoutController) Destroy(instance application.ComponentInstance) error {
 	return nil
 }
 
-func (inst * comFactory4pComDebugInterceptor) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+func (inst * comFactory4pComLogoutController) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+	
+	obj := inst.castObject(instance)
+	obj.Subjects = inst.getterForFieldSubjectsSelector(context)
+	return context.LastError()
+}
+
+//getterForFieldSubjectsSelector
+func (inst * comFactory4pComLogoutController) getterForFieldSubjectsSelector (context application.InstanceContext) keeper0x6d39ef.SubjectManager {
+
+	o1 := inst.mSubjectsSelector.GetOne(context)
+	o2, ok := o1.(keeper0x6d39ef.SubjectManager)
+	if !ok {
+		eb := &util.ErrorBuilder{}
+		eb.Message("bad cast")
+		eb.Set("com", "com10-controller0x21caa6.LogoutController")
+		eb.Set("field", "Subjects")
+		eb.Set("type1", "?")
+		eb.Set("type2", "keeper0x6d39ef.SubjectManager")
+		context.HandleError(eb.Create())
+		return nil
+	}
+	return o2
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+// comFactory4pComEmailVerificationController : the factory of component: com11-controller0x21caa6.EmailVerificationController
+type comFactory4pComEmailVerificationController struct {
+
+    mPrototype * controller0x21caa6.EmailVerificationController
+
+	
+	mEmailVeriServiceSelector config.InjectionSelector
+	mResponderSelector config.InjectionSelector
+
+}
+
+func (inst * comFactory4pComEmailVerificationController) init() application.ComponentFactory {
+
+	
+	inst.mEmailVeriServiceSelector = config.NewInjectionSelector("#express-EmailVerificationService",nil)
+	inst.mResponderSelector = config.NewInjectionSelector("#glass-main-responder",nil)
+
+
+	inst.mPrototype = inst.newObject()
+    return inst
+}
+
+func (inst * comFactory4pComEmailVerificationController) newObject() * controller0x21caa6.EmailVerificationController {
+	return & controller0x21caa6.EmailVerificationController {}
+}
+
+func (inst * comFactory4pComEmailVerificationController) castObject(instance application.ComponentInstance) * controller0x21caa6.EmailVerificationController {
+	return instance.Get().(*controller0x21caa6.EmailVerificationController)
+}
+
+func (inst * comFactory4pComEmailVerificationController) GetPrototype() lang.Object {
+	return inst.mPrototype
+}
+
+func (inst * comFactory4pComEmailVerificationController) NewInstance() application.ComponentInstance {
+	return config.SimpleInstance(inst, inst.newObject())
+}
+
+func (inst * comFactory4pComEmailVerificationController) AfterService() application.ComponentAfterService {
+	return inst
+}
+
+func (inst * comFactory4pComEmailVerificationController) Init(instance application.ComponentInstance) error {
 	return nil
+}
+
+func (inst * comFactory4pComEmailVerificationController) Destroy(instance application.ComponentInstance) error {
+	return nil
+}
+
+func (inst * comFactory4pComEmailVerificationController) Inject(instance application.ComponentInstance, context application.InstanceContext) error {
+	
+	obj := inst.castObject(instance)
+	obj.EmailVeriService = inst.getterForFieldEmailVeriServiceSelector(context)
+	obj.Responder = inst.getterForFieldResponderSelector(context)
+	return context.LastError()
+}
+
+//getterForFieldEmailVeriServiceSelector
+func (inst * comFactory4pComEmailVerificationController) getterForFieldEmailVeriServiceSelector (context application.InstanceContext) service0xd29b29.EmailVerificationService {
+
+	o1 := inst.mEmailVeriServiceSelector.GetOne(context)
+	o2, ok := o1.(service0xd29b29.EmailVerificationService)
+	if !ok {
+		eb := &util.ErrorBuilder{}
+		eb.Message("bad cast")
+		eb.Set("com", "com11-controller0x21caa6.EmailVerificationController")
+		eb.Set("field", "EmailVeriService")
+		eb.Set("type1", "?")
+		eb.Set("type2", "service0xd29b29.EmailVerificationService")
+		context.HandleError(eb.Create())
+		return nil
+	}
+	return o2
+}
+
+//getterForFieldResponderSelector
+func (inst * comFactory4pComEmailVerificationController) getterForFieldResponderSelector (context application.InstanceContext) glass0x47343f.MainResponder {
+
+	o1 := inst.mResponderSelector.GetOne(context)
+	o2, ok := o1.(glass0x47343f.MainResponder)
+	if !ok {
+		eb := &util.ErrorBuilder{}
+		eb.Message("bad cast")
+		eb.Set("com", "com11-controller0x21caa6.EmailVerificationController")
+		eb.Set("field", "Responder")
+		eb.Set("type1", "?")
+		eb.Set("type2", "glass0x47343f.MainResponder")
+		context.HandleError(eb.Create())
+		return nil
+	}
+	return o2
 }
 
 

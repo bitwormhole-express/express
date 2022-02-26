@@ -112,7 +112,14 @@ export default {
         url: "/api/v1/password/",
         data,
       };
-      this.$store.dispatch("axios/execute", p);
+      this.$store
+        .dispatch("axios/execute", p)
+        .then(() => {
+          this.showAlert("成功");
+        })
+        .catch(() => {
+          this.showAlert("失败");
+        });
     },
 
     showAlert(msg) {

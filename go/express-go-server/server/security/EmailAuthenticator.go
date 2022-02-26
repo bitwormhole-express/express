@@ -2,8 +2,12 @@ package security
 
 import (
 	"context"
+	"encoding/json"
 	"strings"
 
+	"bitwomrhole.com/djaf/express-go-server/server/data/dao"
+	"bitwomrhole.com/djaf/express-go-server/server/service"
+	"bitwomrhole.com/djaf/express-go-server/server/web/dto"
 	"github.com/bitwormhole/starter-security/keeper"
 	"github.com/bitwormhole/starter-security/keeper/users"
 	"github.com/bitwormhole/starter/markup"
@@ -11,6 +15,9 @@ import (
 
 type EmailAuthenticator struct {
 	markup.Component `class:"keeper-authenticator-registry"`
+
+	AccountDAO       dao.Account                      `inject:"#express-data-account-dao"`
+	EmailVeriService service.EmailVerificationService `inject:"#express-EmailVerificationService"`
 }
 
 func (inst *EmailAuthenticator) _Impl() (keeper.AuthenticatorRegistry, keeper.Authenticator) {
@@ -34,16 +41,34 @@ func (inst *EmailAuthenticator) Supports(ctx context.Context, a keeper.Authentic
 func (inst *EmailAuthenticator) Verify(ctx context.Context, a keeper.Authentication) (keeper.Identity, error) {
 
 	user := a.User()
-	ib := keeper.IdentityBuilder{}
+	secret := a.Secret()
 
-	ib.Avatar = "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
-	ib.Nickname = user
-	ib.Roles = "guest,user"
-	ib.UserID = 0
-	ib.UserName = users.UserName(user)
-	ib.UserUUID = ""
+	// 验证邮件
+	veri := &dto.EmailVerification{}
+	err := json.Unmarshal(secret, veri)
+	if err != nil {
+		return nil, err
+	}
+	err = inst.EmailVeriService.Verify(veri)
+	if err != nil {
+		return nil, err
+	}
+
+	// 查找账号
+	account, err := inst.AccountDAO.FindByEmail(user)
+	if err != nil {
+		return nil, err
+	}
+
+	// 创建结果
+	ib := keeper.IdentityBuilder{}
+	ib.Avatar = account.Avatar
+	ib.Nickname = account.Nickname
+	ib.Roles = users.Roles(account.Roles)
+	ib.UserID = users.UserID(account.ID)
+	ib.UserName = users.UserName(account.Username)
+	ib.UserUUID = users.UserUUID(account.UUID)
 
 	id := ib.Identity()
-	// return nil, errors.New("todo: no impl")
 	return id, nil
 }

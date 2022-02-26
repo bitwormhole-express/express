@@ -131,6 +131,24 @@ export default {
     showAlert(msg) {
       this.$alert(msg);
     },
+
+    verify() {
+      let verification = this.getVerificationDTO();
+      verification.code = this.vcodeText;
+      let data = {
+        verification,
+      };
+      let p = {
+        method: "PUT",
+        url: "/api/v1/email-verification/",
+        data,
+      };
+      let result = this.$store.dispatch("axios/execute", p).catch((err) => {
+        this.showAlert("验证失败！");
+        return Promise.reject(err);
+      });
+      return result;
+    },
   },
 };
 </script>

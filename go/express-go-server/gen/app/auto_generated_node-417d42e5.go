@@ -18,6 +18,25 @@ import (
 	markup0x23084a "github.com/bitwormhole/starter/markup"
 )
 
+type pComPasswordServiceImpl struct {
+	instance *impl0x29d072.PasswordServiceImpl
+	 markup0x23084a.Component `id:"express-PasswordService"`
+	AccountDAO dao0xf4c226.Account `inject:"#express-data-account-dao"`
+	EmailVeriService service0xd29b29.EmailVerificationService `inject:"#express-EmailVerificationService"`
+}
+
+
+type pComEmailVerificationServiceImpl struct {
+	instance *impl0x29d072.EmailVerificationServiceImpl
+	 markup0x23084a.Component `id:"express-EmailVerificationService" initMethod:"Init"`
+	Context application0x67f6c5.Context `inject:"context"`
+	MailTemplateName string `inject:"${email.verification.template}"`
+	MailTitle string `inject:"${email.verification.title}"`
+	Sender mail0xcd88fb.Sender `inject:"#mail.Sender"`
+	SenderAddr string `inject:"${mail.sender.address}"`
+}
+
+
 type pComAccountDaoImpl struct {
 	instance *dao0xf4c226.AccountDaoImpl
 	 markup0x23084a.Component `id:"express-data-account-dao" class:"express-server-data-auto-migrator"`
@@ -36,6 +55,8 @@ type pComAutoMigratorManager struct {
 type pComEmailAuthenticator struct {
 	instance *security0x9ba940.EmailAuthenticator
 	 markup0x23084a.Component `class:"keeper-authenticator-registry"`
+	AccountDAO dao0xf4c226.Account `inject:"#express-data-account-dao"`
+	EmailVeriService service0xd29b29.EmailVerificationService `inject:"#express-EmailVerificationService"`
 }
 
 
@@ -47,30 +68,9 @@ type pComPasswordAuthenticator struct {
 }
 
 
-type pComEmailVerificationServiceImpl struct {
-	instance *impl0x29d072.EmailVerificationServiceImpl
-	 markup0x23084a.Component `id:"express-EmailVerificationService" initMethod:"Init"`
-	Context application0x67f6c5.Context `inject:"context"`
-	MailTemplateName string `inject:"${email.verification.template}"`
-	MailTitle string `inject:"${email.verification.title}"`
-	Sender mail0xcd88fb.Sender `inject:"#mail.Sender"`
-	SenderAddr string `inject:"${mail.sender.address}"`
-}
-
-
-type pComPasswordServiceImpl struct {
-	instance *impl0x29d072.PasswordServiceImpl
-	 markup0x23084a.Component `id:"express-PasswordService"`
-	AccountDAO dao0xf4c226.Account `inject:"#express-data-account-dao"`
-	EmailVeriService service0xd29b29.EmailVerificationService `inject:"#express-EmailVerificationService"`
-}
-
-
-type pComEmailVerificationController struct {
-	instance *controller0x21caa6.EmailVerificationController
-	 markup0x23084a.Component `class:"rest-controller"`
-	EmailVeriService service0xd29b29.EmailVerificationService `inject:"#express-EmailVerificationService"`
-	Responder glass0x47343f.MainResponder `inject:"#glass-main-responder"`
+type pComDebugInterceptor struct {
+	instance *interceptor0xbd9b3b.DebugInterceptor
+	 markup0x23084a.Component `class:"rest-interceptor-registry"`
 }
 
 
@@ -80,10 +80,9 @@ type pComExampleController struct {
 }
 
 
-type pComLogoutController struct {
-	instance *controller0x21caa6.LogoutController
+type pComAuthController struct {
+	instance *controller0x21caa6.AuthController
 	 markup0x23084a.Component `class:"rest-controller"`
-	Subjects keeper0x6d39ef.SubjectManager `inject:"#keeper-subject-manager"`
 }
 
 
@@ -95,8 +94,17 @@ type pComPasswordController struct {
 }
 
 
-type pComDebugInterceptor struct {
-	instance *interceptor0xbd9b3b.DebugInterceptor
-	 markup0x23084a.Component `class:"rest-interceptor-registry"`
+type pComLogoutController struct {
+	instance *controller0x21caa6.LogoutController
+	 markup0x23084a.Component `class:"rest-controller"`
+	Subjects keeper0x6d39ef.SubjectManager `inject:"#keeper-subject-manager"`
+}
+
+
+type pComEmailVerificationController struct {
+	instance *controller0x21caa6.EmailVerificationController
+	 markup0x23084a.Component `class:"rest-controller"`
+	EmailVeriService service0xd29b29.EmailVerificationService `inject:"#express-EmailVerificationService"`
+	Responder glass0x47343f.MainResponder `inject:"#glass-main-responder"`
 }
 

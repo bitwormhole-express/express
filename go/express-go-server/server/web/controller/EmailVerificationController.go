@@ -26,9 +26,11 @@ func (inst *EmailVerificationController) _Impl() glass.Controller {
 func (inst *EmailVerificationController) Init(ec glass.EngineConnection) error {
 	ec = ec.RequestMapping("email-verification")
 	ec.Handle(http.MethodPost, "", inst.handlePost)
+	ec.Handle(http.MethodPut, "", inst.handlePut)
 	return nil
 }
 
+// 通过 POST 方法，请求发送包含验证码的email
 func (inst *EmailVerificationController) handlePost(c *gin.Context) {
 	req := innerEmailVerificationRequest{
 		controller: inst,
@@ -38,6 +40,20 @@ func (inst *EmailVerificationController) handlePost(c *gin.Context) {
 	err := req.open()
 	if err == nil {
 		err = req.doPost()
+	}
+	req.send(err)
+}
+
+// 通过 PUT 方法，验证输入的验证码是否有效
+func (inst *EmailVerificationController) handlePut(c *gin.Context) {
+	req := innerEmailVerificationRequest{
+		controller: inst,
+		gc:         c,
+	}
+	req.wantRequestBody = true
+	err := req.open()
+	if err == nil {
+		err = req.doPut()
 	}
 	req.send(err)
 }
@@ -78,4 +94,9 @@ func (inst *innerEmailVerificationRequest) doPost() error {
 	}
 	inst.tx.Verification = *o
 	return nil
+}
+
+func (inst *innerEmailVerificationRequest) doPut() error {
+	o := &inst.rx.Verification
+	return inst.controller.EmailVeriService.Verify(o)
 }
