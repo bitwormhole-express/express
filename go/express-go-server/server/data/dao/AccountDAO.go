@@ -4,6 +4,7 @@ import (
 	"strconv"
 
 	"bitwomrhole.com/djaf/express-go-server/server/data/entity"
+	"bitwomrhole.com/djaf/express-go-server/server/service"
 	"github.com/bitwormhole/starter-gorm/datasource"
 	"github.com/bitwormhole/starter/markup"
 )
@@ -38,7 +39,8 @@ type Account interface {
 type AccountDaoImpl struct {
 	markup.Component `id:"express-data-account-dao" class:"express-server-data-auto-migrator"`
 
-	DS datasource.Source `inject:"#gorm-datasource-default"`
+	DS            datasource.Source     `inject:"#gorm-datasource-default"`
+	UUIDGenerator service.UUIDGenerator `inject:"#the-uuid-generator"`
 }
 
 func (inst *AccountDaoImpl) _Impl() (Account, AutoMigrator) {
@@ -53,6 +55,9 @@ func (inst *AccountDaoImpl) AutoMigrate() error {
 
 // 增
 func (inst *AccountDaoImpl) Insert(e *entity.Account) (*entity.Account, error) {
+
+	e.UUID = inst.UUIDGenerator.GenUUID("entity.Account", e.Email)
+
 	db := inst.DS.DB()
 	result := db.Create(e)
 	err := result.Error
@@ -63,15 +68,26 @@ func (inst *AccountDaoImpl) Insert(e *entity.Account) (*entity.Account, error) {
 }
 
 // 改
-func (inst *AccountDaoImpl) Update(id entity.AccountID, e *entity.Account) (*entity.Account, error) {
-	e.ID = id
+func (inst *AccountDaoImpl) Update(id entity.AccountID, o1 *entity.Account) (*entity.Account, error) {
+
 	db := inst.DS.DB()
-	result := db.Save(e)
-	err := result.Error
+	o2, err := inst.FindByID(id)
 	if err != nil {
 		return nil, err
 	}
-	return e, nil
+
+	o2.Avatar = o1.Avatar
+	o2.Nickname = o1.Nickname
+	o2.Password = o1.Password
+	o2.Roles = o1.Roles
+	o2.Salt = o1.Salt
+
+	result := db.Save(o2)
+	err = result.Error
+	if err != nil {
+		return nil, err
+	}
+	return o2, nil
 }
 
 // 删除

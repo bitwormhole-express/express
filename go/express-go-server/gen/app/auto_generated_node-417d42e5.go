@@ -37,10 +37,31 @@ type pComEmailVerificationServiceImpl struct {
 }
 
 
+type pComUUIDGeneratorImpl struct {
+	instance *impl0x29d072.UUIDGeneratorImpl
+	 markup0x23084a.Component `id:"the-uuid-generator"`
+}
+
+
+type pComPackageServiceImpl struct {
+	instance *impl0x29d072.PackageServiceImpl
+	 markup0x23084a.Component `id:"express-PackageService"`
+	PackageDAO dao0xf4c226.PackageDAO `inject:"#express-data-package-dao"`
+}
+
+
 type pComAccountDaoImpl struct {
 	instance *dao0xf4c226.AccountDaoImpl
 	 markup0x23084a.Component `id:"express-data-account-dao" class:"express-server-data-auto-migrator"`
 	DS datasource0x68a737.Source `inject:"#gorm-datasource-default"`
+}
+
+
+type pComPackageDaoImpl struct {
+	instance *dao0xf4c226.PackageDaoImpl
+	 markup0x23084a.Component `id:"express-data-package-dao" class:"express-server-data-auto-migrator"`
+	DS datasource0x68a737.Source `inject:"#gorm-datasource-default"`
+	UUIDGenerator service0xd29b29.UUIDGenerator `inject:"#the-uuid-generator"`
 }
 
 
@@ -106,5 +127,13 @@ type pComEmailVerificationController struct {
 	 markup0x23084a.Component `class:"rest-controller"`
 	EmailVeriService service0xd29b29.EmailVerificationService `inject:"#express-EmailVerificationService"`
 	Responder glass0x47343f.MainResponder `inject:"#glass-main-responder"`
+}
+
+
+type pComPackageController struct {
+	instance *controller0x21caa6.PackageController
+	 markup0x23084a.Component `class:"rest-controller"`
+	Responder glass0x47343f.MainResponder `inject:"#glass-main-responder"`
+	PackageService service0xd29b29.PackageService `inject:"#express-PackageService"`
 }
 
