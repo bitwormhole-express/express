@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【Song快递】验证码</title>
+</head>
+
+<body>
+    <div>
+        <h1>【Song快递】验证码</h1>
+        <p> Email用户{{verification.address}}，您好！以下是您的邮件验证码。 </p>
+        <h3> {{verification.code}} </h3>
+        <p>此验证码有效期为 {{verification.ttl.min}} 分钟。请注意不要泄漏给别人。 </p>
+    </div>
+</body>
+
+</html>
