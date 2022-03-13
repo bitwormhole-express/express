@@ -1,8 +1,6 @@
 package entity
 
-import (
-	"bitwomrhole.com/djaf/express-go-server/server/data/dxo"
-)
+import "github.com/bitwomrhole-express/express/community-server/app/data/dxo"
 
 ////////////////////////////////////////////////////////////////////////////////
 

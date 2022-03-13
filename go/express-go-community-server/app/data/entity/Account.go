@@ -1,7 +1,8 @@
 package entity
 
 import (
-	"bitwomrhole.com/djaf/express-go-server/server/data/dxo"
+	"github.com/bitwomrhole-express/express/community-server/app/data/dxo"
+
 	"github.com/bitwormhole/starter/util"
 )
 

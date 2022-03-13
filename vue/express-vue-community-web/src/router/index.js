@@ -41,6 +41,14 @@ const routes = [{
         import('../views/Send.vue'),
 },
 {
+    path : '/settings' , 
+    component : () =>import('../views/Settings.vue') ,
+},
+{
+    path : '/settings/buckets' , 
+    component : () =>import('../views/settings/buckets.vue') ,
+},
+{
     path: '/sign-up',
     component: () =>
         import('../views/SignUp.vue'),

@@ -1,38 +1,16 @@
-package dao
+package impl
 
 import (
 	"strconv"
 
-	"bitwomrhole.com/djaf/express-go-server/server/data/entity"
-	"bitwomrhole.com/djaf/express-go-server/server/service"
+	"github.com/bitwomrhole-express/express/community-server/app/data/dao"
+	"github.com/bitwomrhole-express/express/community-server/app/data/dxo"
+	"github.com/bitwomrhole-express/express/community-server/app/data/entity"
+	"github.com/bitwomrhole-express/express/community-server/app/service"
+
 	"github.com/bitwormhole/starter-gorm/datasource"
 	"github.com/bitwormhole/starter/markup"
 )
-
-// Account 是访问 entity.Account 的 DAO
-// 【inject:"#express-data-account-dao"】
-type Account interface {
-	// 增
-	Insert(e *entity.Account) (*entity.Account, error)
-
-	// 改
-	Update(id entity.AccountID, e *entity.Account) (*entity.Account, error)
-
-	// 删除
-	Remove(id entity.AccountID) error
-
-	// 通过email查找账号
-	FindByEmail(email string) (*entity.Account, error)
-
-	// 通过ID查找账号
-	FindByID(id entity.AccountID) (*entity.Account, error)
-
-	// 通过用户名查找账号
-	FindByUserName(username string) (*entity.Account, error)
-
-	// 通过(email 或 id 或 username)查找账号
-	Find(word string) (*entity.Account, error)
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -43,7 +21,7 @@ type AccountDaoImpl struct {
 	UUIDGenerator service.UUIDGenerator `inject:"#the-uuid-generator"`
 }
 
-func (inst *AccountDaoImpl) _Impl() (Account, AutoMigrator) {
+func (inst *AccountDaoImpl) _Impl() (dao.Account, AutoMigrator) {
 	return inst, inst
 }
 
@@ -68,7 +46,7 @@ func (inst *AccountDaoImpl) Insert(e *entity.Account) (*entity.Account, error) {
 }
 
 // 改
-func (inst *AccountDaoImpl) Update(id entity.AccountID, o1 *entity.Account) (*entity.Account, error) {
+func (inst *AccountDaoImpl) Update(id dxo.AccountID, o1 *entity.Account) (*entity.Account, error) {
 
 	db := inst.DS.DB()
 	o2, err := inst.FindByID(id)
@@ -91,14 +69,14 @@ func (inst *AccountDaoImpl) Update(id entity.AccountID, o1 *entity.Account) (*en
 }
 
 // 删除
-func (inst *AccountDaoImpl) Remove(id entity.AccountID) error {
+func (inst *AccountDaoImpl) Remove(id dxo.AccountID) error {
 	db := inst.DS.DB()
 	result := db.Delete(&entity.Account{}, id)
 	return result.Error
 }
 
 // 通过ID查找账号
-func (inst *AccountDaoImpl) FindByID(id entity.AccountID) (*entity.Account, error) {
+func (inst *AccountDaoImpl) FindByID(id dxo.AccountID) (*entity.Account, error) {
 	e := &entity.Account{}
 	db := inst.DS.DB()
 	result := db.First(e, id)
@@ -136,7 +114,7 @@ func (inst *AccountDaoImpl) Find(word string) (*entity.Account, error) {
 	// by id
 	n, err := strconv.ParseInt(word, 10, 64)
 	if err == nil {
-		account, err := inst.FindByID(entity.AccountID(n))
+		account, err := inst.FindByID(dxo.AccountID(n))
 		if err == nil {
 			return account, nil
 		}

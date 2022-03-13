@@ -1,6 +1,6 @@
 package service
 
-import "bitwomrhole.com/djaf/express-go-server/server/web/dto"
+import "github.com/bitwomrhole-express/express/station/app/web/dto"
 
 // EmailVerificationService 是提供邮件验证的服务
 // 【inject:"#express-EmailVerificationService"】

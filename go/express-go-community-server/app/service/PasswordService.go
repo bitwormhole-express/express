@@ -1,6 +1,6 @@
 package service
 
-import "bitwomrhole.com/djaf/express-go-server/server/web/dto"
+import "github.com/bitwomrhole-express/express/community-server/app/web/dto"
 
 // PasswordService 提供密码相关的服务
 // 【inject:"#express-PasswordService"】

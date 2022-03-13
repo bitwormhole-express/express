@@ -1,12 +1,12 @@
 package main
 
 import (
-	expressgoserver "bitwomrhole.com/djaf/express-go-server"
+	communityserver "github.com/bitwomrhole-express/express/community-server"
 	"github.com/bitwormhole/starter"
 )
 
 func main() {
 	i := starter.InitApp()
-	i.Use(expressgoserver.Module())
+	i.Use(communityserver.Module())
 	i.Run()
 }

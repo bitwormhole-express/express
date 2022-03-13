@@ -3,11 +3,11 @@ package impl
 import (
 	"errors"
 
-	"bitwomrhole.com/djaf/express-go-server/server/data/dao"
-	"bitwomrhole.com/djaf/express-go-server/server/data/dxo"
-	"bitwomrhole.com/djaf/express-go-server/server/data/entity"
-	"bitwomrhole.com/djaf/express-go-server/server/service"
-	"bitwomrhole.com/djaf/express-go-server/server/web/dto"
+	"github.com/bitwomrhole-express/express/station/app/data/dao"
+	"github.com/bitwomrhole-express/express/station/app/data/dxo"
+	"github.com/bitwomrhole-express/express/station/app/data/entity"
+	"github.com/bitwomrhole-express/express/station/app/service"
+	"github.com/bitwomrhole-express/express/station/app/web/dto"
 	"github.com/bitwormhole/starter/markup"
 )
 

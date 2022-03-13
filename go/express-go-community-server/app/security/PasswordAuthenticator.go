@@ -5,8 +5,8 @@ import (
 	"errors"
 	"strings"
 
-	"bitwomrhole.com/djaf/express-go-server/server/data/dao"
-	"bitwomrhole.com/djaf/express-go-server/server/service"
+	"github.com/bitwomrhole-express/express/community-server/app/data/dao"
+	"github.com/bitwomrhole-express/express/community-server/app/service"
 	"github.com/bitwormhole/starter-security/keeper"
 	"github.com/bitwormhole/starter-security/keeper/users"
 	"github.com/bitwormhole/starter/markup"

@@ -18,6 +18,9 @@
               <el-icon> <Message /></el-icon> {{ session.email }}
             </div>
             <div class="box-exit">
+              <el-button type="text" @click="handleClickSettings"
+                >设置</el-button
+              >
               <el-button type="text" @click="handleClickLogout">退出</el-button>
             </div>
           </div>
@@ -72,6 +75,10 @@ export default {
 
     handleClickLogout() {
       this.$store.dispatch("session/logout");
+    },
+
+    handleClickSettings() {
+      this.$router.push("/settings");
     },
 
     handleClickSignUp() {

@@ -1,4 +1,4 @@
-package dao
+package impl
 
 import (
 	"crypto/rand"
@@ -7,33 +7,14 @@ import (
 	"strings"
 	"sync"
 
-	"bitwomrhole.com/djaf/express-go-server/server/data/dxo"
-	"bitwomrhole.com/djaf/express-go-server/server/data/entity"
-	"bitwomrhole.com/djaf/express-go-server/server/service"
+	"github.com/bitwomrhole-express/express/community-server/app/data/dao"
+	"github.com/bitwomrhole-express/express/community-server/app/data/dxo"
+	"github.com/bitwomrhole-express/express/community-server/app/data/entity"
+	"github.com/bitwomrhole-express/express/community-server/app/service"
 	"github.com/bitwormhole/starter-gorm/datasource"
 	"github.com/bitwormhole/starter/markup"
 	"github.com/bitwormhole/starter/util"
 )
-
-// PackageDAO 是用来存取包裹对象的DAO
-// 【inject:"#express-data-package-dao"】
-type PackageDAO interface {
-
-	// 增
-	Insert(o *entity.Package) (*entity.Package, error)
-
-	// 删
-	Delete(id dxo.PackageID) error
-
-	// 改
-	Update(id dxo.PackageID, o *entity.Package) (*entity.Package, error)
-
-	// 查：列表
-	FindList(o *entity.Package) ([]*entity.Package, error)
-
-	// 查：单个对象
-	FindOne(id dxo.PackageID) (*entity.Package, error)
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -47,7 +28,7 @@ type PackageDaoImpl struct {
 	idgen innerPackageIDGen
 }
 
-func (inst *PackageDaoImpl) _Impl() (PackageDAO, AutoMigrator) {
+func (inst *PackageDaoImpl) _Impl() (dao.PackageDAO, AutoMigrator) {
 	return inst, inst
 }
 

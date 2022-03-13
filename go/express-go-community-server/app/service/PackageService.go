@@ -1,8 +1,8 @@
 package service
 
 import (
-	"bitwomrhole.com/djaf/express-go-server/server/data/dxo"
-	"bitwomrhole.com/djaf/express-go-server/server/web/dto"
+	"github.com/bitwomrhole-express/express/community-server/app/data/dxo"
+	"github.com/bitwomrhole-express/express/community-server/app/web/dto"
 )
 
 // PackageService 是处理包裹对象的服务

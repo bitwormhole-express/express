@@ -3,7 +3,8 @@ package entity
 import (
 	"time"
 
-	"bitwomrhole.com/djaf/express-go-server/server/data/dxo"
+	"github.com/bitwomrhole-express/express/station/app/data/dxo"
+
 	"gorm.io/gorm"
 )
 

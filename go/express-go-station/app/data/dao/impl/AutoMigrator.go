@@ -1,4 +1,4 @@
-package dao
+package impl
 
 import (
 	"time"

@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"strings"
 
-	"bitwomrhole.com/djaf/express-go-server/server/service"
-	"bitwomrhole.com/djaf/express-go-server/server/web/dto"
+	"github.com/bitwomrhole-express/express/station/app/service"
+	"github.com/bitwomrhole-express/express/station/app/web/dto"
 	"github.com/bitwormhole/starter-mail/mail"
 	"github.com/bitwormhole/starter/application"
 	"github.com/bitwormhole/starter/markup"

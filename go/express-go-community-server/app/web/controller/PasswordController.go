@@ -3,8 +3,8 @@ package controller
 import (
 	"net/http"
 
-	"bitwomrhole.com/djaf/express-go-server/server/service"
-	"bitwomrhole.com/djaf/express-go-server/server/web/vo"
+	"github.com/bitwomrhole-express/express/community-server/app/service"
+	"github.com/bitwomrhole-express/express/community-server/app/web/vo"
 	"github.com/bitwormhole/starter-gin/glass"
 	"github.com/bitwormhole/starter/markup"
 	"github.com/gin-gonic/gin"

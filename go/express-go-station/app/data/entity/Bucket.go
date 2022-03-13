@@ -1,6 +1,6 @@
 package entity
 
-import "bitwomrhole.com/djaf/express-go-server/server/data/dxo"
+import "github.com/bitwomrhole-express/express/station/app/data/dxo"
 
 // Bucket 表示一个存储桶
 type Bucket struct {

@@ -11,6 +11,7 @@ import (
 	mysql "github.com/bitwormhole/starter-gorm-mysql"
 	sqlserver "github.com/bitwormhole/starter-gorm-sqlserver"
 	startermail "github.com/bitwormhole/starter-mail"
+	starterobjectbucket "github.com/bitwormhole/starter-object-bucket"
 	"github.com/bitwormhole/starter/application"
 	"github.com/bitwormhole/starter/collection"
 )
@@ -40,6 +41,7 @@ func Module() application.Module {
 	mb.Dependency(sqlserver.DriverModule())
 	mb.Dependency(starterginsecurity.Module())
 	mb.Dependency(startermail.Module())
+	mb.Dependency(starterobjectbucket.Module())
 
 	mb.Dependency(ginstarter.ModuleWithDevtools())
 

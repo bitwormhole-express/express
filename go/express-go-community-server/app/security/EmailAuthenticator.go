@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"strings"
 
-	"bitwomrhole.com/djaf/express-go-server/server/data/dao"
-	"bitwomrhole.com/djaf/express-go-server/server/service"
-	"bitwomrhole.com/djaf/express-go-server/server/web/dto"
+	"github.com/bitwomrhole-express/express/community-server/app/data/dao"
+	"github.com/bitwomrhole-express/express/community-server/app/service"
+	"github.com/bitwomrhole-express/express/community-server/app/web/dto"
 	"github.com/bitwormhole/starter-security/keeper"
 	"github.com/bitwormhole/starter-security/keeper/users"
 	"github.com/bitwormhole/starter/markup"
