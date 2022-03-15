@@ -10,7 +10,7 @@ require (
 	github.com/bitwormhole/starter-gorm-mysql v0.0.4 // direct
 	github.com/bitwormhole/starter-gorm-sqlserver v0.0.4 // direct
 	github.com/bitwormhole/starter-mail v0.1.0 // indirect
-	github.com/bitwormhole/starter-object-bucket v0.1.1 // indirect
+	github.com/bitwormhole/starter-object-bucket v0.1.2 // indirect
 	github.com/bitwormhole/starter-restful v0.1.5 // direct
 	github.com/bitwormhole/starter-security v0.1.6 // direct
 	github.com/gin-gonic/gin v1.7.7 // direct

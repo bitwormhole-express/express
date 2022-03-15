@@ -4,16 +4,19 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/bitwomrhole-express/express/community-server/app/service"
 	"github.com/bitwomrhole-express/express/community-server/app/web/vo"
 	"github.com/bitwormhole/starter-gin/glass"
 	"github.com/bitwormhole/starter/markup"
 	"github.com/gin-gonic/gin"
 )
 
+// BucketController ...
 type BucketController struct {
 	markup.Component `class:"rest-controller"`
 
-	Responder glass.MainResponder `inject:"#glass-main-responder"`
+	Responder     glass.MainResponder   `inject:"#glass-main-responder"`
+	BucketService service.BucketService `inject:"#express-BucketService"`
 }
 
 func (inst *BucketController) _Impl() glass.Controller {

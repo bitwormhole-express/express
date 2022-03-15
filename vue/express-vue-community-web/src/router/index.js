@@ -41,12 +41,20 @@ const routes = [{
         import('../views/Send.vue'),
 },
 {
-    path : '/settings' , 
-    component : () =>import('../views/Settings.vue') ,
+    path: '/settings',
+    component: () => import('../views/Settings.vue'),
 },
 {
-    path : '/settings/buckets' , 
-    component : () =>import('../views/settings/buckets.vue') ,
+    path: '/settings/account',
+    component: () => import('../views/settings/account-info.vue'),
+},
+{
+    path: '/settings/account-security',
+    component: () => import('../views/settings/account-security.vue'),
+},
+{
+    path: '/settings/buckets',
+    component: () => import('../views/settings/buckets.vue'),
 },
 {
     path: '/sign-up',

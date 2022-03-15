@@ -44,7 +44,7 @@ func (inst *UploadServiceImpl) BeginUpload(c context.Context, up *dto.Upload) (*
 		return nil, err
 	}
 
-	driver, err := inst.BucketDrivers.FindDriver(bucket.Driver)
+	driver, err := inst.BucketDrivers.FindDriver(bucket.Provider)
 	if err != nil {
 		return nil, err
 	}
@@ -122,7 +122,6 @@ func (inst *UploadServiceImpl) convertUpload1(up1 *dto.Upload) (*buckets.HTTPUpl
 	up2.ContentMD5 = up1.ContentMD5
 	up2.ContentType = up1.ContentType
 	up2.UseHTTPS = true
-	up2.Domain = buckets.BucketPublic
 	up2.RequestHeaders = up1.Headers
 	return up2, nil
 }
@@ -140,7 +139,7 @@ func (inst *UploadServiceImpl) convertUpload2(up2 *buckets.HTTPUploading) (*dto.
 
 func (inst *UploadServiceImpl) convertBucket(b1 *entity.Bucket) *buckets.Bucket {
 	b2 := &buckets.Bucket{}
-	b2.Driver = b1.Driver
+	b2.Provider = b1.Provider
 	b2.Credential = "todo..."
 	return b2
 }

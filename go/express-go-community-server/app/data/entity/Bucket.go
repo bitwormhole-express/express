@@ -11,7 +11,7 @@ type Bucket struct {
 
 	ID dxo.BucketID `gorm:"primaryKey"`
 
-	Driver string // 供应商
+	Provider string // 供应商
 
 	Properties util.Base64
 }

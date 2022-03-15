@@ -1,13 +1,15 @@
 <template>
   <MainFrame>
-    <h1>Settings</h1>
+    <h1><SettingsIndexView /></h1>
   </MainFrame>
 </template>
 
 <script>
+import SettingsIndexView from "./../components/settings/index.vue";
+
 export default {
   name: "Settings",
-  components: {},
+  components: { SettingsIndexView },
 };
 </script>
 

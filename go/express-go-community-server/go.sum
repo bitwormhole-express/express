@@ -39,6 +39,8 @@ github.com/bitwormhole/starter-object-bucket v0.1.0 h1:Up/1STopPH/eAxPaqXHyq3out
 github.com/bitwormhole/starter-object-bucket v0.1.0/go.mod h1:xnMPLr61IoJLAFuazQm4GkDC43k/ydSUkCyt2NUzvhM=
 github.com/bitwormhole/starter-object-bucket v0.1.1 h1:ZpJEaiZu+h9dJNgPJhgsw0Tb7+tI2Obujv9g3s6s820=
 github.com/bitwormhole/starter-object-bucket v0.1.1/go.mod h1:xnMPLr61IoJLAFuazQm4GkDC43k/ydSUkCyt2NUzvhM=
+github.com/bitwormhole/starter-object-bucket v0.1.2 h1:QLIEsqcZeLa5OQwWwihkHjeOphkGcihlnZnvs85XGnA=
+github.com/bitwormhole/starter-object-bucket v0.1.2/go.mod h1:xnMPLr61IoJLAFuazQm4GkDC43k/ydSUkCyt2NUzvhM=
 github.com/bitwormhole/starter-restful v0.1.2/go.mod h1:LYs12GhcdTvInF4kIhd73CpCN411MnjgJkyjE9Geoe0=
 github.com/bitwormhole/starter-restful v0.1.4 h1:4k3vCzusP83MbNmjSKe+c9BS1C5iu3RA7aD2+hHyizE=
 github.com/bitwormhole/starter-restful v0.1.4/go.mod h1:LYs12GhcdTvInF4kIhd73CpCN411MnjgJkyjE9Geoe0=

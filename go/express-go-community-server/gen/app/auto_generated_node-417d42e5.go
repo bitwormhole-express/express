@@ -20,50 +20,25 @@ import (
 	markup0x23084a "github.com/bitwormhole/starter/markup"
 )
 
-type pComUploadServiceImpl struct {
-	instance *impl0x79e5ab.UploadServiceImpl
-	 markup0x23084a.Component `id:"express-UploadService"`
-	Subjects keeper0x6d39ef.SubjectManager `inject:"#keeper-subject-manager"`
-	BucketDrivers buckets0xc61cfb.Manager `inject:"#buckets.Manager"`
-	BucketDAO dao0xf91732.BucketDAO `inject:"#express-data-bucket-dao"`
-}
-
-
-type pComPasswordServiceImpl struct {
-	instance *impl0x79e5ab.PasswordServiceImpl
-	 markup0x23084a.Component `id:"express-PasswordService"`
-	AccountDAO dao0xf91732.Account `inject:"#express-data-account-dao"`
-	EmailVeriService service0x602df7.EmailVerificationService `inject:"#express-EmailVerificationService"`
-}
-
-
-type pComEmailVerificationServiceImpl struct {
-	instance *impl0x79e5ab.EmailVerificationServiceImpl
-	 markup0x23084a.Component `id:"express-EmailVerificationService" initMethod:"Init"`
-	Context application0x67f6c5.Context `inject:"context"`
-	MailTemplateName string `inject:"${email.verification.template}"`
-	MailTitle string `inject:"${email.verification.title}"`
-	Sender mail0xcd88fb.Sender `inject:"#mail.Sender"`
-	SenderAddr string `inject:"${mail.sender.address}"`
-}
-
-
-type pComUUIDGeneratorImpl struct {
-	instance *impl0x79e5ab.UUIDGeneratorImpl
-	 markup0x23084a.Component `id:"the-uuid-generator"`
-}
-
-
-type pComPackageServiceImpl struct {
-	instance *impl0x79e5ab.PackageServiceImpl
-	 markup0x23084a.Component `id:"express-PackageService"`
-	PackageDAO dao0xf91732.PackageDAO `inject:"#express-data-package-dao"`
-}
-
-
 type pComAccountDaoImpl struct {
 	instance *impl0x31d227.AccountDaoImpl
 	 markup0x23084a.Component `id:"express-data-account-dao" class:"express-server-data-auto-migrator"`
+	DS datasource0x68a737.Source `inject:"#gorm-datasource-default"`
+	UUIDGenerator service0x602df7.UUIDGenerator `inject:"#the-uuid-generator"`
+}
+
+
+type pComAutoMigratorManager struct {
+	instance *impl0x31d227.AutoMigratorManager
+	 markup0x23084a.Component `initMethod:"Init"`
+	DS datasource0x68a737.Source `inject:"#gorm-datasource-default"`
+	Items []impl0x31d227.AutoMigrator `inject:".express-server-data-auto-migrator"`
+}
+
+
+type pComBucketDaoImpl struct {
+	instance *impl0x31d227.BucketDaoImpl
+	 markup0x23084a.Component `id:"express-data-bucket-dao" class:"express-server-data-auto-migrator"`
 	DS datasource0x68a737.Source `inject:"#gorm-datasource-default"`
 	UUIDGenerator service0x602df7.UUIDGenerator `inject:"#the-uuid-generator"`
 }
@@ -86,22 +61,6 @@ type pComPackageDaoImpl struct {
 }
 
 
-type pComAutoMigratorManager struct {
-	instance *impl0x31d227.AutoMigratorManager
-	 markup0x23084a.Component `initMethod:"Init"`
-	DS datasource0x68a737.Source `inject:"#gorm-datasource-default"`
-	Items []impl0x31d227.AutoMigrator `inject:".express-server-data-auto-migrator"`
-}
-
-
-type pComBucketDaoImpl struct {
-	instance *impl0x31d227.BucketDaoImpl
-	 markup0x23084a.Component `id:"express-data-bucket-dao" class:"express-server-data-auto-migrator"`
-	DS datasource0x68a737.Source `inject:"#gorm-datasource-default"`
-	UUIDGenerator service0x602df7.UUIDGenerator `inject:"#the-uuid-generator"`
-}
-
-
 type pComEmailAuthenticator struct {
 	instance *security0xe21654.EmailAuthenticator
 	 markup0x23084a.Component `class:"keeper-authenticator-registry"`
@@ -118,15 +77,44 @@ type pComPasswordAuthenticator struct {
 }
 
 
-type pComDebugInterceptor struct {
-	instance *interceptor0x488949.DebugInterceptor
-	 markup0x23084a.Component `class:"rest-interceptor-registry"`
+type pComEmailVerificationServiceImpl struct {
+	instance *impl0x79e5ab.EmailVerificationServiceImpl
+	 markup0x23084a.Component `id:"express-EmailVerificationService" initMethod:"Init"`
+	Context application0x67f6c5.Context `inject:"context"`
+	MailTemplateName string `inject:"${email.verification.template}"`
+	MailTitle string `inject:"${email.verification.title}"`
+	Sender mail0xcd88fb.Sender `inject:"#mail.Sender"`
+	SenderAddr string `inject:"${mail.sender.address}"`
 }
 
 
-type pComExampleController struct {
-	instance *controller0xc95f51.ExampleController
-	 markup0x23084a.Component `class:"rest-controller"`
+type pComPackageServiceImpl struct {
+	instance *impl0x79e5ab.PackageServiceImpl
+	 markup0x23084a.Component `id:"express-PackageService"`
+	PackageDAO dao0xf91732.PackageDAO `inject:"#express-data-package-dao"`
+}
+
+
+type pComPasswordServiceImpl struct {
+	instance *impl0x79e5ab.PasswordServiceImpl
+	 markup0x23084a.Component `id:"express-PasswordService"`
+	AccountDAO dao0xf91732.Account `inject:"#express-data-account-dao"`
+	EmailVeriService service0x602df7.EmailVerificationService `inject:"#express-EmailVerificationService"`
+}
+
+
+type pComUploadServiceImpl struct {
+	instance *impl0x79e5ab.UploadServiceImpl
+	 markup0x23084a.Component `id:"express-UploadService"`
+	Subjects keeper0x6d39ef.SubjectManager `inject:"#keeper-subject-manager"`
+	BucketDrivers buckets0xc61cfb.Manager `inject:"#buckets.Manager"`
+	BucketDAO dao0xf91732.BucketDAO `inject:"#express-data-bucket-dao"`
+}
+
+
+type pComUUIDGeneratorImpl struct {
+	instance *impl0x79e5ab.UUIDGeneratorImpl
+	 markup0x23084a.Component `id:"the-uuid-generator"`
 }
 
 
@@ -136,18 +124,10 @@ type pComAuthController struct {
 }
 
 
-type pComPasswordController struct {
-	instance *controller0xc95f51.PasswordController
+type pComBucketController struct {
+	instance *controller0xc95f51.BucketController
 	 markup0x23084a.Component `class:"rest-controller"`
 	Responder glass0x47343f.MainResponder `inject:"#glass-main-responder"`
-	PasswordService service0x602df7.PasswordService `inject:"#express-PasswordService"`
-}
-
-
-type pComLogoutController struct {
-	instance *controller0xc95f51.LogoutController
-	 markup0x23084a.Component `class:"rest-controller"`
-	Subjects keeper0x6d39ef.SubjectManager `inject:"#keeper-subject-manager"`
 }
 
 
@@ -159,18 +139,16 @@ type pComEmailVerificationController struct {
 }
 
 
-type pComUploadController struct {
-	instance *controller0xc95f51.UploadController
+type pComExampleController struct {
+	instance *controller0xc95f51.ExampleController
 	 markup0x23084a.Component `class:"rest-controller"`
-	Responder glass0x47343f.MainResponder `inject:"#glass-main-responder"`
-	UploadService service0x602df7.UploadService `inject:"#express-UploadService"`
 }
 
 
-type pComBucketController struct {
-	instance *controller0xc95f51.BucketController
+type pComLogoutController struct {
+	instance *controller0xc95f51.LogoutController
 	 markup0x23084a.Component `class:"rest-controller"`
-	Responder glass0x47343f.MainResponder `inject:"#glass-main-responder"`
+	Subjects keeper0x6d39ef.SubjectManager `inject:"#keeper-subject-manager"`
 }
 
 
@@ -179,5 +157,27 @@ type pComPackageController struct {
 	 markup0x23084a.Component `class:"rest-controller"`
 	Responder glass0x47343f.MainResponder `inject:"#glass-main-responder"`
 	PackageService service0x602df7.PackageService `inject:"#express-PackageService"`
+}
+
+
+type pComPasswordController struct {
+	instance *controller0xc95f51.PasswordController
+	 markup0x23084a.Component `class:"rest-controller"`
+	Responder glass0x47343f.MainResponder `inject:"#glass-main-responder"`
+	PasswordService service0x602df7.PasswordService `inject:"#express-PasswordService"`
+}
+
+
+type pComUploadController struct {
+	instance *controller0xc95f51.UploadController
+	 markup0x23084a.Component `class:"rest-controller"`
+	Responder glass0x47343f.MainResponder `inject:"#glass-main-responder"`
+	UploadService service0x602df7.UploadService `inject:"#express-UploadService"`
+}
+
+
+type pComDebugInterceptor struct {
+	instance *interceptor0x488949.DebugInterceptor
+	 markup0x23084a.Component `class:"rest-interceptor-registry"`
 }
 
