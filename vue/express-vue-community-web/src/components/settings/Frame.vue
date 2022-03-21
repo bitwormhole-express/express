@@ -3,7 +3,7 @@
 
   <div>
     <el-container>
-      <el-aside>
+      <el-aside class='left-box' >
         <SettingsNavMenu class="settings-nav-menu" />
       </el-aside>
       <el-main>
@@ -27,4 +27,9 @@ export default {
   margin-top: 50px;
   padding-top: 50px;
 }
+
+.left-box {
+  width: 180px;
+}
+
 </style>

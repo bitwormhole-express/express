@@ -2,7 +2,8 @@
   <div>
     <el-table :data="tableData">
       <el-table-column label="名称" prop="name"></el-table-column>
-      <el-table-column label="域名" prop="domain"></el-table-column>
+      <el-table-column label="端点" prop="domain"></el-table-column>
+      <el-table-column label="提供商" prop="driver"></el-table-column>
       <el-table-column label="操作" prop="opt">
         <template #default="scope">
           <el-button type="text" @click="handleClickItemDetail(scope.row)"
